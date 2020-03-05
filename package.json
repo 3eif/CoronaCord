@@ -1,0 +1,18 @@
+{
+  "name": "CoronaCord",
+  "version": "1.0.0",
+  "description": "A discord bot that shows info about the corona virus",
+  "main": "index.js",
+  "scripts": {
+    "test": "c."
+  },
+  "author": "Tetracyl#0001",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.0.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.3",
+    "novelcovid": "^1.0.4",
+    "snekfetch": "^4.0.4"
+  }
+}
