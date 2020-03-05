@@ -49,7 +49,6 @@ To get more info on a specific command do \`${client.settings.prefix}help <comma
 **uptime** - displays the bot's uptime.
 
 Need more help? Join the support server: ${client.settings.server}
-Website: https://eartensifier.com
 `;
 
       try {
