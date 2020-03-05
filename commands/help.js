@@ -40,6 +40,7 @@ Type \`${client.settings.prefix}<command>\` to use a command.
 To get more info on a specific command do \`${client.settings.prefix}help <command>\`
 
 **corona** - sends statistics about the corona virus.
+**corona <country>** - sends statistics about the corona virus in said country.
 **help** - sends you a dm of detailed list of coronacord's commands.
 **invite** - sends the invite link for the bot.
 **ping** - bot's latency

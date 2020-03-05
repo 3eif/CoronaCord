@@ -23,7 +23,7 @@ module.exports = {
                 })
                 .catch((err) => console.error(err));
         } else if(args[0]) {
-            let countryStr = args[0];
+            let countryStr = args.splice(" ");
             novelcovid.countries()
             .then((data) => {
                 let countryInt;
