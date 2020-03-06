@@ -43,7 +43,8 @@ module.exports = {
                 .catch((err) => console.error(err));
             message.channel.send(embed);
         } else if (args[0]) {
-            let countryStr = args.splice(" ");
+            let str = `${args.splice(" ")}`;
+            let countryStr = str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
             novelcovid.countries()
                 .then((data) => {
                     let countryInt;
@@ -59,7 +60,6 @@ module.exports = {
                     for (let i = 0; i < countriesJSON.length; i++) {
                         if (countriesJSON[i].country == countryStr) {
                             validAbbreviation = true;
-                            console.log(countriesJSON[i].abbreviation);
                             countryAbbreviation = countriesJSON[i].abbreviation.toLowerCase();
                             break;
                         }

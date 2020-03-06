@@ -36,20 +36,20 @@ module.exports = class Ready extends Event {
                     console.log(`Coronacord is online: ${this.client.shard.count} shards, ${totalGuilds} servers and ${totalMembers} members.`)
 
                     setInterval(() => {
-                        this.client.user.setActivity(`ear help | ${totalGuilds} servers`);
+                        this.client.user.setActivity(`c.help | ${totalGuilds} servers`);
                     }, 1800000);
 
                     const embed = new Discord.MessageEmbed()
                         .setAuthor("CoronaCord", this.client.settings.avatar)
                         .setColor(colors.main)
-                        .setDescription(`Coronacord is online.`)
+                        .setDescription(`CoronaCord is online.`)
                         .addField("Shards", `**${this.client.shard.count}** shards`, true)
                         .addField("Servers", `**${totalGuilds}** servers`, true)
                         .setTimestamp()
                         .setFooter(`${totalMembers} users`)
 
                     webhookClient.send({
-                        username: 'Coronacord',
+                        username: 'CoronaCord',
                         avatarURL: this.client.settings.avatar,
                         embeds: [embed],
                     });
