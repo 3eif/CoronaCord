@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const Event = require('../Event');
 const tokens = require("../tokens.json");
 
-const { webhooks, dblToken } = require("../tokens.json");
+const { webhooks, dblToken, dblPassword } = require("../tokens.json");
 const DBL = require("dblapi.js");
 
 const webhookClient = new Discord.WebhookClient(webhooks["webhookID"], webhooks["webhookToken"]);
@@ -54,9 +54,6 @@ module.exports = class Ready extends Event {
                         avatarURL: this.client.settings.avatar,
                         embeds: [embed],
                     });
-
-                    const dbl = new DBL(dblToken, client);
-                    dbl.postStats(totalGuilds, this.client.shard.id, this.client.shard.count);
                 });
         }
     }

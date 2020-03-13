@@ -32,7 +32,7 @@ module.exports = {
                     let totalTodayCases = 0;
                     let totalTodayDeaths = 0;
                     for (let i = 0; i < data.length; i++) {
-                        console.log(data[i].todayCases)
+
                         totalTodayCases += data[i].todayCases;
                         totalTodayDeaths += data[i].todayDeaths;
                     }
