@@ -12,6 +12,7 @@ module.exports = {
         if (!args[0]) {
             let embed = new Discord.MessageEmbed()
                 .setColor(colors.main)
+                .setImage("https://cdn.discordapp.com/attachments/685198558969856027/688073259870060552/iu.png")
                 .setAuthor("Coronavirus Stats", client.settings.avatar);
             await novelcovid.all()
                 .then((data) => {
