@@ -7,7 +7,6 @@ const DBL = require("dblapi.js");
 const colors = require("../data/colors.json");
 
 const { webhooks, dblToken, dblPassword } = require("../tokens.json");
-const dbl = new DBL(dblToken, { webhookPort: 65335, webhookAuth: dblPassword }, this.client);
 const webhookClient = new Discord.WebhookClient(webhooks["messageID"], webhooks["messageToken"]);
 
 module.exports = class Message extends Event {
@@ -104,7 +103,7 @@ module.exports = class Message extends Event {
     try {
       let random = Math.floor(Math.random() * 5); 
       if(random == 1) {
-        dbl.hasVoted(message.author.id).then(voted => {
+        this.client.dbl.hasVoted(message.author.id).then(voted => {
             if(!voted){
               const embed = new Discord.MessageEmbed()
               .setDescription(`Enjoying the bot? Vote for it here (it only takes a few seconds!): https://top.gg/bot/685159987638435861`)

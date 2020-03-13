@@ -54,6 +54,8 @@ module.exports = class Ready extends Event {
                         avatarURL: this.client.settings.avatar,
                         embeds: [embed],
                     });
+
+                    this.client.dbl.postStats(totalGuilds, this.client.shard.id, this.client.shard.count);
                 });
         }
     }
