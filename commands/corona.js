@@ -52,13 +52,13 @@ module.exports = {
                     let validAbbreviation = false;
                     let countryAbbreviation;
                     for (let i = 0; i < data.length; i++) {
-                        if (countryStr == data[i].country) {
+                        if (str == data[i].country || countryStr == data[i].country) {
                             validCountry = true;
                             countryInt = i;
                         }
                     }
                     for (let i = 0; i < countriesJSON.length; i++) {
-                        if (countriesJSON[i].country == countryStr) {
+                        if (countriesJSON[i].country == str || countriesJSON[i].country == countryStr) {
                             validAbbreviation = true;
                             countryAbbreviation = countriesJSON[i].abbreviation.toLowerCase();
                             break;
