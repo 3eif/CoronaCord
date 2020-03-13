@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://news.wttw.com/sites/default/files/styles/full/public/article/image-non-gallery/CoronavirusCDC.jpg?itok=qu3a1psk" width="140px" height="140px" /><br>
+    <img src="https://news.wttw.com/sites/default/files/styles/full/public/article/image-non-gallery/CoronavirusCDC.jpg?itok=qu3a1psk" width="300px" height="140px" /><br>
 </div>
 
 <a href="https://top.gg/bot/685159987638435861" >
