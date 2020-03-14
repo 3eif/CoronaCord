@@ -55,7 +55,7 @@ module.exports = class Ready extends Event {
                         embeds: [embed],
                     });
 
-                    this.client.dbl.postStats(totalGuilds, this.client.shard.id, this.client.shard.count);
+                    //this.client.dbl.postStats(totalGuilds, this.client.shard.id, this.client.shard.count);
                 });
         }
     }

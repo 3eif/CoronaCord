@@ -4,8 +4,8 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 client.settings = require("./settings.js");
 const tokens = require("./tokens.json");
-const DBL = require("dblapi.js");
-client.dbl = new DBL(tokens.dblToken, { webhookPort: 65335, webhookAuth: tokens.dblPassword }, this.client);
+// const DBL = require("dblapi.js");
+// client.dbl = new DBL(tokens.dblToken, { webhookPort: 65335, webhookAuth: tokens.dblPassword }, this.client);
 
 ["commands","events"].forEach(handler => {
   require(`./util/${handler}`)(client)

@@ -101,18 +101,18 @@ module.exports = class Message extends Event {
     }
 
     try {
-      let random = Math.floor(Math.random() * 5); 
-      if(random == 1) {
-        this.client.dbl.hasVoted(message.author.id).then(voted => {
-            if(!voted){
-              const embed = new Discord.MessageEmbed()
-              .setDescription(`Enjoying the bot? Vote for it here (it only takes a few seconds!): https://top.gg/bot/685159987638435861`)
-              .setFooter(`Voting will remove this message.`)
-              .setColor(colors.main)
-              message.channel.send(embed);
-            }
-        });
-      }
+      // let random = Math.floor(Math.random() * 5); 
+      // if(random == 1) {
+      //   this.client.dbl.hasVoted(message.author.id).then(voted => {
+      //       if(!voted){
+      //         const embed = new Discord.MessageEmbed()
+      //         .setDescription(`Enjoying the bot? Vote for it here (it only takes a few seconds!): https://top.gg/bot/685159987638435861`)
+      //         .setFooter(`Voting will remove this message.`)
+      //         .setColor(colors.main)
+      //         message.channel.send(embed);
+      //       }
+      //   });
+      // }
       cmd.execute(this.client, message, args);
     } catch (e) {
       console.error(e);
