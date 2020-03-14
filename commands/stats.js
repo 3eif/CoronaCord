@@ -25,10 +25,6 @@ module.exports = {
             client.shard.broadcastEval('this.guilds.cache.reduce((prev, guild) => prev + guild.memberCount, 0)'),
         ];
 
-        bot.findOne({
-            clientID: client.user.id
-        }, async (err, b) => {
-            if (err) console.log(err);
             Promise.all(promises)
                 .then(results => {
                     const totalGuilds = results[0].reduce((prev, guildCount) => prev + guildCount, 0);
@@ -45,13 +41,11 @@ module.exports = {
                         .addField(`Members`, `${totalMembers} members`, true)
                         .addField(`Shards`, `${parseInt(client.shard.ids) + 1}/${client.shard.count}`, true)
                         .addField(`Memory Used`, `${Math.round(used * 100) / 100}MB`, true)
-                        .addField(`Messages Sent`, `${b.messagesSent} messages`, true)
                         .addField(`Uptime`, `${days} days, ${hours} hours, ${mins} minutes, and ${realTotalSecs} seconds`)
                         .setFooter(`Latency ${msg.createdTimestamp - message.createdTimestamp}ms`)
                         .setTimestamp()
                     return msg.edit("", statsEmbed);
                 })
                 .catch(console.error);
-        });
     },
 };
