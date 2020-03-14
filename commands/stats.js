@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const colors = require("../data/colors.json")
 const { loading } = require("../data/emojis.json");
-const bot = require("../models/bot.js")
 
 module.exports = {
     name: 'stats',
