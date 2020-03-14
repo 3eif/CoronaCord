@@ -8,13 +8,6 @@ const DBL = require("dblapi.js");
 
 const webhookClient = new Discord.WebhookClient(webhooks["webhookID"], webhooks["webhookToken"]);
 
-const mongoose = require("mongoose");
-
-mongoose.connect(`mongodb+srv://${tokens.mongoUsername}:${encodeURIComponent(tokens.mongoPass)}@tetracyl-unhxi.mongodb.net/test?retryWrites=true&w=majority`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
 module.exports = class Ready extends Event {
     constructor(...args) {
         super(...args)

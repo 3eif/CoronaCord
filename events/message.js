@@ -2,7 +2,6 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const cooldowns = new Discord.Collection();
 const Event = require('../Event');
-const bot = require("../models/bot.js");
 const DBL = require("dblapi.js");
 const colors = require("../data/colors.json");
 
@@ -51,24 +50,6 @@ module.exports = class Message extends Event {
     const now = Date.now();
     const timestamps = cooldowns.get(command.name);
     const cooldownAmount = cmd.cooldown * 100;
-
-    bot.findOne({
-      clientID: this.client.user.id
-    }, async (err, b) => {
-      if (err) console.log(err);
-      if (!b) {
-        const newClient = new bot({
-          clientID: this.client.user.id,
-          clientName: this.client.user.name,
-          messagesSent: 0,
-          songsPlayed: 0,
-        });
-        await newClient.save().catch(e => console.log(e));
-      }
-
-      b.messagesSent += 1;
-      await b.save().catch(e => console.log(e));
-    });
 
     console.log(`${cmd.name} used by ${message.author.tag} (${message.author.id}) from ${message.guild.name} (${message.guild.id})`)
     const embed = new Discord.MessageEmbed()

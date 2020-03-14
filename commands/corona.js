@@ -4,86 +4,60 @@ const colors = require("../data/colors.json");
 const countriesJSON = require("../data/countries.json");
 const novelcovid = require("novelcovid")
 
+Object.defineProperty(String.prototype, "toProperCase", {
+    value: function () {
+        return this.replace(/([^\W_]+[^\s-]*) */g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+    }
+});
+
 module.exports = {
     name: "corona",
     description: "Shows stats about the corona virus.",
     usage: "[country]",
     async execute(client, message, args) {
         if (!args[0]) {
-            let embed = new Discord.MessageEmbed()
-                .setColor(colors.main)
+            const stats = await novelcovid.all();
+            const countryStats = await novelcovid.countries();
+            var todayDeaths = 0;
+            var todayCases = 0;
+            countryStats.forEach(country => { todayDeaths += country.todayDeaths; todayCases += country.todayCases });
+            const embed = new Discord.MessageEmbed()
+                .setAuthor("Coronavirus Stats", client.settings.avatar)
+                .addField("Confirmed Cases", `${stats.cases.toLocaleString()} Cases`, true)
+                .addField("Deaths", `${stats.deaths.toLocaleString()} Deaths`, true)
+                .addField("Perecent Dead", `${((stats.deaths / stats.cases) * 100).toFixed(2)}%`, true)
+                .addField("Perecent Recovered", `${((stats.recovered / stats.cases) * 100).toFixed(2)}%`, true)
+                .addField("Today Cases", `${todayCases.toLocaleString()} Cases`, true)
+                .addField("Today Deaths", `${todayDeaths.toLocaleString()} Deaths`, true)
                 .setThumbnail("https://cdn.discordapp.com/attachments/685198558969856027/688073259870060552/iu.png")
-                .setAuthor("Coronavirus Stats", client.settings.avatar);
-            await novelcovid.all()
-                .then((data) => {
-                    let precentDead = Math.round((data.deaths / data.cases) * 100);
-                    let precentRecovered = Math.round((data.recovered / data.cases) * 100);
-
-                    embed.addField("Confirmed Cases", `${data.cases} cases`, true)
-                    embed.addField("Deaths", `${data.deaths} deaths`, true)
-                    embed.addField("Recovered", `${data.recovered} recovered`, true)
-                    embed.addField("Perecent Dead", `${precentDead}%`, true)
-                    embed.addField("Perecent Recovered", `${precentRecovered}%`, true)
-                    embed.setTimestamp()
-                })
-                .catch((err) => console.error(err));
-            await novelcovid.countries()
-                .then((data) => {
-
-                    let totalTodayCases = 0;
-                    let totalTodayDeaths = 0;
-                    for (let i = 0; i < data.length; i++) {
-
-                        totalTodayCases += data[i].todayCases;
-                        totalTodayDeaths += data[i].todayDeaths;
-                    }
-
-                    embed.addField("Today Cases", `${totalTodayCases} cases`, true)
-                    embed.addField("Today Deaths", `${totalTodayDeaths} deaths`, true)
-                })
-                .catch((err) => console.error(err));
+                .setColor(colors.main)
+                .setTimestamp();
             message.channel.send(embed);
-        } else if (args[0]) {
-            let str = `${args.splice(" ")}`;
-            let countryStr = str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-            novelcovid.countries()
-                .then((data) => {
-                    let countryInt;
-                    let validCountry = false;
-                    let validAbbreviation = false;
-                    let countryAbbreviation;
-                    for (let i = 0; i < data.length; i++) {
-                        if (str == data[i].country || countryStr == data[i].country) {
-                            validCountry = true;
-                            countryInt = i;
-                        }
-                    }
-                    for (let i = 0; i < countriesJSON.length; i++) {
-                        if (countriesJSON[i].country == str || countriesJSON[i].country == countryStr) {
-                            validAbbreviation = true;
-                            countryAbbreviation = countriesJSON[i].abbreviation.toLowerCase();
-                            break;
-                        }
-                    }
-                    if (!validCountry) return message.channel.send("Country not found.");
-                    let precentDead = Math.round((data[countryInt].deaths / data[countryInt].cases) * 100);
-                    let precentRecovered = Math.round((data[countryInt].recovered / data[countryInt].cases) * 100);
-                    const embed = new Discord.MessageEmbed()
-                        .setAuthor(`${countryStr}`)
-                        .setColor(colors.main)
-                        .addField("Confirmed Cases", `${data[countryInt].cases} cases`, true)
-                        .addField("Today Cases", `${data[countryInt].todayCases} cases`, true)
-                        .addField("Deaths", `${data[countryInt].deaths} deaths`, true)
-                        .addField("Today Deaths", `${data[countryInt].todayDeaths} deaths`, true)
-                        .addField("Critical", `${data[countryInt].critical} critical`, true)
-                        .addField("Recovered", `${data[countryInt].recovered} recovered`, true)
-                        .addField("Perecent Dead", `${precentDead}%`, true)
-                        .addField("Perecent Recovered", `${precentRecovered}%`, true)
-                        .setTimestamp();
-                    if (validAbbreviation) embed.setThumbnail(`https://www.countryflags.io/${countryAbbreviation}/flat/64.png`)
-                    return message.channel.send(embed);
-                })
-                .catch((err) => console.error(err));
+        } else {
+            const countryInput = args.join(" ").toProperCase();
+            var countries = await novelcovid.countries();
+            const objCountries = {};
+            countries.forEach(c => objCountries[c.country] = c);
+            countries = objCountries;
+            var name;
+            if (countriesJSON[args[0].toUpperCase().trim()]) {
+                name = countriesJSON[args[0].toUpperCase().trim()];
+            } else {
+                name = countryInput;
+            }
+            if (!countries[name]) return message.channel.send("Country not found.");
+            const country = countries[name];
+            const embed = new Discord.MessageEmbed()
+                .setAuthor(country.country)
+                .setDescription(`${country.cases.toLocaleString()} Confirmed Cases`)
+                .addField("Today Cases", `${country.todayCases.toLocaleString()} Cases`, true)
+                .addField("Today Deaths", `${country.todayDeaths.toLocaleString()} Deaths`, true)
+                .addField("Recovered", `${country.recovered.toLocaleString()} (${((country.recovered / country.cases) * 100).toFixed(2)}%) Recovered`)
+                .addField("Deaths", `${country.deaths.toLocaleString()} (${((country.deaths / country.cases) * 100).toFixed(2)}%) Deaths`, true)
+                .setThumbnail(`https://www.countryflags.io/${require("../data/countries_abbreviations.json")[country.country]}/flat/64.png`)
+                .setColor(colors.main)
+                .setTimestamp();
+            message.channel.send(embed);
         }
     },
 };
