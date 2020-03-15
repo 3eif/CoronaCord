@@ -2,11 +2,19 @@ const colors = require("../data/colors.json");
 const Discord = require('discord.js');
 const Event = require('../Event');
 const tokens = require("../tokens.json");
+const sendFeed = require("../util/sendFeed.js");
 
 const { webhooks, dblToken, dblPassword } = require("../tokens.json");
 const DBL = require("dblapi.js");
 
 const webhookClient = new Discord.WebhookClient(webhooks["webhookID"], webhooks["webhookToken"]);
+
+const mongoose = require("mongoose");
+
+mongoose.connect(`mongodb+srv://${tokens.mongoUsername}:${encodeURIComponent(tokens.mongoPass)}@tetracyl-unhxi.mongodb.net/test?retryWrites=true&w=majority`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 module.exports = class Ready extends Event {
     constructor(...args) {
@@ -22,6 +30,8 @@ module.exports = class Ready extends Event {
                 this.client.shard.fetchClientValues('guilds.cache.size'),
                 this.client.shard.broadcastEval('this.guilds.cache.reduce((prev, guild) => prev + guild.memberCount, 0)'),
             ];
+
+            
 
             return Promise.all(promises)
                 .then(async results => {

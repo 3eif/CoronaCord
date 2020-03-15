@@ -230,6 +230,7 @@
     "UA":"Ukraine",
     "AE":"UAE",
     "US":"USA",
+    "USA":"USA",
     "UM":"United States Minor Outlying Islands",
     "UY":"Uruguay",
     "UZ":"Uzbekistan",
@@ -244,5 +245,5 @@
     "YU":"Yugoslavia",
     "ZM":"Zambia",
     "ZW":"Zimbabwe",
-    "UK":"United Kingdom"
+    "UK":"UK"
 }

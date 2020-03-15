@@ -11,9 +11,6 @@ const tokens = require("./tokens.json");
   require(`./util/${handler}`)(client)
 })
 
-client.responses = require('./util/responses.js');
-client.errors = require('./util/errors.js');
-
 client.on("shardDisconnect", () => console.log("Disconnecting..."));
 client.on("shardReconnecting", () => console.log("Reconnecting..."));
 client.on("shardError", e => console.log(e));

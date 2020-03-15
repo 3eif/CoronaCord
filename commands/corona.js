@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const emojis = require("../data/emojis.json");
 const colors = require("../data/colors.json");
 const countriesJSON = require("../data/countries.json");
 const novelcovid = require("novelcovid")
@@ -49,7 +48,7 @@ module.exports = {
             const country = countries[name];
             const embed = new Discord.MessageEmbed()
                 .setAuthor(country.country)
-                .setDescription(`${country.cases.toLocaleString()} Confirmed Cases`)
+                .setDescription(`**${country.cases.toLocaleString()} Confirmed Cases**`)
                 .addField("Today Cases", `${country.todayCases.toLocaleString()} Cases`, true)
                 .addField("Today Deaths", `${country.todayDeaths.toLocaleString()} Deaths`, true)
                 .addField("Recovered", `${country.recovered.toLocaleString()} (${((country.recovered / country.cases) * 100).toFixed(2)}%) Recovered`)

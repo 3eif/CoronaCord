@@ -8,6 +8,9 @@ const colors = require("../data/colors.json");
 const { webhooks, dblToken, dblPassword } = require("../tokens.json");
 const webhookClient = new Discord.WebhookClient(webhooks["messageID"], webhooks["messageToken"]);
 
+const mongoose = require("mongoose");
+const servers = require("../models/server.js");
+
 module.exports = class Message extends Event {
   constructor(...args) {
     super(...args)
