@@ -2,14 +2,6 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const cooldowns = new Discord.Collection();
 const Event = require('../Event');
-const DBL = require("dblapi.js");
-const colors = require("../data/colors.json");
-
-const { webhooks, dblToken, dblPassword } = require("../tokens.json");
-const webhookClient = new Discord.WebhookClient(webhooks["messageID"], webhooks["messageToken"]);
-
-const mongoose = require("mongoose");
-const servers = require("../models/server.js");
 
 module.exports = class Message extends Event {
   constructor(...args) {
@@ -55,18 +47,6 @@ module.exports = class Message extends Event {
     const cooldownAmount = cmd.cooldown * 100;
 
     console.log(`${cmd.name} used by ${message.author.tag} (${message.author.id}) from ${message.guild.name} (${message.guild.id})`)
-    const embed = new Discord.MessageEmbed()
-      .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
-      .setColor(colors.main)
-      .setDescription(`**${cmd.name}** command used by **${message.author.tag}** (${message.author.id})`)
-      .setFooter(`${message.guild.name} (${message.guild.id})`, message.guild.iconURL())
-      .setTimestamp()
-
-    webhookClient.send({
-      username: 'CoronaCord',
-      avatarURL: this.client.settings.avatar,
-      embeds: [embed],
-    });
 
     if (true) {
       if (!timestamps.has(message.author.id)) {
@@ -85,18 +65,6 @@ module.exports = class Message extends Event {
     }
 
     try {
-      // let random = Math.floor(Math.random() * 5); 
-      // if(random == 1) {
-      //   this.client.dbl.hasVoted(message.author.id).then(voted => {
-      //       if(!voted){
-      //         const embed = new Discord.MessageEmbed()
-      //         .setDescription(`Enjoying the bot? Vote for it here (it only takes a few seconds!): https://top.gg/bot/685159987638435861`)
-      //         .setFooter(`Voting will remove this message.`)
-      //         .setColor(colors.main)
-      //         message.channel.send(embed);
-      //       }
-      //   });
-      // }
       cmd.execute(this.client, message, args);
     } catch (e) {
       console.error(e);
