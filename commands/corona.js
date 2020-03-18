@@ -54,7 +54,7 @@ module.exports = {
         "USA": "United States"
       };
   
-      const thePrefixedContries = ["United States"];
+      const thePrefixedContries = ["United States", "Netherlands"];
 
       if (wikiAliases[country.country]) {
         console.log("hi");
