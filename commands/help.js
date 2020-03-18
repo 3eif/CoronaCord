@@ -1,16 +1,12 @@
-const Discord = require ("discord.js"); 
+const Discord = require ("discord.js");  // eslint-disable-line no-unused-vars
 const { typing } = require("../data/emojis.json");
-const fs = require("fs");
-const { promisify } = require("util");
-const readdir = promisify(require("fs").readdir);
-const commandsFile = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
 
 module.exports = {
   name: "help",
   description: "Sends you a dm of detailed list of Coronacord's commands.",
   aliases: ["commands", "list"],
   cooldown: "30",
-  usage: `[command name]`,
+  usage: "[command name]",
   async execute (client, message, args) {
       
     const msg = await message.channel.send(`${typing} Sending a list of my commands...`);
@@ -19,19 +15,14 @@ module.exports = {
     const { commands } = message.client;
     const data = [];
 
-    let helpCommands = [];
-    let helpStr2 = "";
+    // Useless without the useless loop with is also useless: const helpCommands = [];
 
     if (!args.length) {      
-        for(let i = 1; i < commandsFile.length; i++){
-            let c = commandsFile[i].split('.')[0];
-            let comInfo = commands.get(c);
-            //if(comInfo.permission != "dev") helpCommands.push(`**${c}** - ${comInfo.description.toLowerCase()}`);
-        }
-
-        for(let i = 0; i < helpCommands.length; i++){
-            helpStr2 += helpCommands[i] + "\n";
-        }
+      // Useless loop cause nothing below has an actual purpose: for (let i = 1; i < commandsFile.length; i++) {
+      // Serves no purpose without line below which also servers no purpose: const c = commandsFile[i].split(".")[0];
+      // Servers no purpose: const comInfo = commands.get(c);
+      //if(comInfo.permission != "dev") helpCommands.push(`**${c}** - ${comInfo.description.toLowerCase()}`);
+      // }
 
       const helpStr = 
 `

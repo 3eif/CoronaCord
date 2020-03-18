@@ -1,22 +1,18 @@
 const fs = require("fs");
 const Discord = require("discord.js");
 const cooldowns = new Discord.Collection();
-const Event = require('../Event');
-const DBL = require("dblapi.js");
+const Event = require("../Event");
 const colors = require("../data/colors.json");
 
-const { webhooks, dblToken, dblPassword } = require("../tokens.json");
+const { webhooks } = require("../tokens.json");
 const webhookClient = new Discord.WebhookClient(webhooks["messageID"], webhooks["messageToken"]);
 
-const mongoose = require("mongoose");
-const servers = require("../models/server.js");
-
 module.exports = class Message extends Event {
-  constructor(...args) {
-    super(...args)
+  constructor (...args) {
+    super(...args);
   }
 
-  async run(message) {
+  async run (message) {
 
     if (message.author.bot) return;
     if (message.channel.type === "text") {
@@ -54,34 +50,31 @@ module.exports = class Message extends Event {
     const timestamps = cooldowns.get(command.name);
     const cooldownAmount = cmd.cooldown * 100;
 
-    console.log(`${cmd.name} used by ${message.author.tag} (${message.author.id}) from ${message.guild.name} (${message.guild.id})`)
+    console.log(`${cmd.name} used by ${message.author.tag} (${message.author.id}) from ${message.guild.name} (${message.guild.id})`);
     const embed = new Discord.MessageEmbed()
       .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
       .setColor(colors.main)
       .setDescription(`**${cmd.name}** command used by **${message.author.tag}** (${message.author.id})`)
       .setFooter(`${message.guild.name} (${message.guild.id})`, message.guild.iconURL())
-      .setTimestamp()
+      .setTimestamp();
 
     webhookClient.send({
-      username: 'CoronaCord',
+      username: "CoronaCord",
       avatarURL: this.client.settings.avatar,
       embeds: [embed],
     });
 
-    if (true) {
-      if (!timestamps.has(message.author.id)) {
-        timestamps.set(message.author.id, now);
-        setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+    if (!timestamps.has(message.author.id)) {
+      timestamps.set(message.author.id, now);
+      setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+    } else {
+      const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+      if (now < expirationTime) {
+        const timeLeft = (expirationTime - now) / 1000;
+        return message.reply(`Please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${cmd.name}\` command.`);
       }
-      else {
-        const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
-        if (now < expirationTime) {
-          const timeLeft = (expirationTime - now) / 1000;
-          return message.reply(`Please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${cmd.name}\` command.`);
-        }
-        timestamps.set(message.author.id, now);
-        setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-      }
+      timestamps.set(message.author.id, now);
+      setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
     }
 
     try {
@@ -103,4 +96,4 @@ module.exports = class Message extends Event {
       message.reply("There was an error trying to execute that command!");
     }
   }
-}
+};

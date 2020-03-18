@@ -8,8 +8,8 @@ const tokens = require("./tokens.json");
 // client.dbl = new DBL(tokens.dblToken, { webhookPort: 65335, webhookAuth: tokens.dblPassword }, this.client);
 
 ["commands","events"].forEach(handler => {
-  require(`./util/${handler}`)(client)
-})
+  require(`./util/${handler}`)(client);
+});
 
 client.on("shardDisconnect", () => console.log("Disconnecting..."));
 client.on("shardReconnecting", () => console.log("Reconnecting..."));
