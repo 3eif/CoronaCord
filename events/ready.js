@@ -1,15 +1,8 @@
 const colors = require("../data/colors.json");
 const Discord = require("discord.js");
 const Event = require("../Event");
-const tokens = require("../tokens.json");
 const { webhooks } = require("../tokens.json");
 const webhookClient = new Discord.WebhookClient(webhooks["webhookID"], webhooks["webhookToken"]);
-const mongoose = require("mongoose");
-
-mongoose.connect(`mongodb+srv://${tokens.mongoUsername}:${encodeURIComponent(tokens.mongoPass)}@tetracyl-unhxi.mongodb.net/test?retryWrites=true&w=majority`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
 
 class Ready extends Event {
   constructor (...args) {

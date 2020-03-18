@@ -1,4 +1,10 @@
 const Discord = require("discord.js");
+const mongoose = require("mongoose");
+
+mongoose.connect(require("./tokens.json").db, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();

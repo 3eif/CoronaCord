@@ -1,5 +1,4 @@
 class Event {
-
   constructor (client, file, options = {}) {
     this.client = client;
     this.name = options.name || file.name;
