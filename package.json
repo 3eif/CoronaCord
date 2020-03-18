@@ -14,6 +14,7 @@
     "discord.js": "^12.0.1",
     "moment": "^2.24.0",
     "mongoose": "^5.9.3",
+    "node-fetch": "^2.6.0",
     "novelcovid": "^1.0.4",
     "snekfetch": "^4.0.4"
   }

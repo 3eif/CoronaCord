@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const colors = require("../data/colors.json");
 const countriesJSON = require("../data/countries.json");
 const novelcovid = require("novelcovid");
+const fetch = require("node-fetch");
 
 Object.defineProperty(String.prototype, "toProperCase", {
   value: function () {
@@ -24,11 +25,11 @@ module.exports = {
         .setAuthor("Coronavirus Stats", client.settings.avatar)
         .addField("Confirmed Cases", `${stats.cases.toLocaleString()} Cases`, true)
         .addField("Deaths", `${stats.deaths.toLocaleString()} Deaths`, true)
-        .addField("Percent Dead (No longer perecent)", `${((stats.deaths / stats.cases) * 100).toFixed(2)}%`, true)
-        .addField("Percent Recovered (Fixed by me TM)", `${((stats.recovered / stats.cases) * 100).toFixed(2)}%`, true)
+        .addField("Percent Dead", `${((stats.deaths / stats.cases) * 100).toFixed(2)}%`, true)
+        .addField("Percent Recovered", `${((stats.recovered / stats.cases) * 100).toFixed(2)}%`, true)
         .addField("Today Cases", `${todayCases.toLocaleString()} Cases`, true)
         .addField("Today Deaths", `${todayDeaths.toLocaleString()} Deaths`, true)
-        .setThumbnail("https://cdn.discordapp.com/attachments/685198558969856027/688073259870060552/iu.png")
+        .setImage("https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/COVID-19_Outbreak_World_Map.svg/330px-COVID-19_Outbreak_World_Map.svg.png")
         .setColor(colors.main)
         .setTimestamp();
       message.channel.send(embed);
@@ -46,7 +47,29 @@ module.exports = {
       }
       if (!countries[name]) return message.channel.send("Country not found.");
       const country = countries[name];
-      const embed = new Discord.MessageEmbed()
+      var wikiName;
+      const wikiAliases = {
+        "S. Korea": "South Korea",
+        "UK": "United Kingdom",
+        "USA": "United States"
+      };
+  
+      const thePrefixedContries = ["United States"];
+
+      if (wikiAliases[country.country]) {
+        console.log("hi");
+        wikiName = wikiAliases[country.country];
+      } else {
+        wikiName = country.country;
+      }
+
+      const WikiPage = await fetch(`https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_${thePrefixedContries.includes(wikiName) ? "the_" : ""}${wikiName.replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_")}`).then(res => res.text());
+      const ImageRegex = /<meta property="og:image" content="([^<]*)"\/>/;
+      const ImageLink = ImageRegex.exec(WikiPage);
+      var imageLink;
+      if (ImageLink) imageLink = ImageLink[1];
+  
+      var embed = new Discord.MessageEmbed()
         .setAuthor(country.country)
         .setDescription(`**${country.cases.toLocaleString()} Confirmed Cases**`)
         .addField("Today Cases", `${country.todayCases.toLocaleString()} Cases`, true)
@@ -56,6 +79,7 @@ module.exports = {
         .setThumbnail(`https://www.countryflags.io/${require("../data/countries_abbreviations.json")[country.country]}/flat/64.png`)
         .setColor(colors.main)
         .setTimestamp();
+      if (imageLink) embed.setImage(imageLink);
       message.channel.send(embed);
     }
   },
