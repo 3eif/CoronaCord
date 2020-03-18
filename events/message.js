@@ -90,9 +90,7 @@ module.exports = class Message extends Event {
       //       }
       //   });
       // }
-      message.channel.startTyping();
       await cmd.execute(this.client, message, args);
-      await message.channel.stopTyping();
     } catch (e) {
       console.error(e);
       message.reply("There was an error trying to execute that command!");
