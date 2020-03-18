@@ -90,7 +90,10 @@ module.exports = class Message extends Event {
       //       }
       //   });
       // }
-      cmd.execute(this.client, message, args);
+      message.channel.startTyping();
+      await cmd.execute(this.client, message, args);
+      await message.channel.stopTyping();
+      message.channel.send("ℹ️ Pro Tip: You can view a graph with the cases of COVID-19 using `c.graph <country>`, for example `c.graph Italy` will show italy's graph.");
     } catch (e) {
       console.error(e);
       message.reply("There was an error trying to execute that command!");
