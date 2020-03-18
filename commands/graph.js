@@ -26,8 +26,8 @@ module.exports = {
     const allDatasets = await Datasets.find();
     var countryRecords = allDatasets.map(dataset => ({ date: dataset.date, year: dataset.year, month:  dataset.month, data: dataset.image.filter(img => img.country === name)[0] }));
     countryRecords = countryRecords.filter(record => record.data !== undefined);
-    const width = 800;
-    const height = 200;
+    const width = 1200;
+    const height = 300;
 
     const Canvas = new CanvasRenderService(width, height, (ChartJS) => {
       ChartJS.plugins.register({
