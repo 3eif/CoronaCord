@@ -33,6 +33,7 @@ module.exports = {
         .setColor(colors.main)
         .setTimestamp();
       message.channel.send(embed);
+      message.channel.send("ℹ️ Pro Tip: You can view a graph with the cases of COVID-19 using `c.graph <country>`, for example `c.graph Italy` will show italy's graph.");
     } else {
       const countryInput = args.join(" ").toProperCase();
       var countries = await novelcovid.countries();
@@ -81,6 +82,7 @@ module.exports = {
         .setTimestamp();
       if (imageLink) embed.setImage(imageLink);
       message.channel.send(embed);
+      message.channel.send("ℹ️ Pro Tip: You can view a graph with the cases of COVID-19 using `c.graph <country>`, for example `c.graph Italy` will show italy's graph.");
     }
   },
 };
