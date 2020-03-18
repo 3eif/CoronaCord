@@ -31,9 +31,9 @@ module.exports = {
         .addField("Today Deaths", `${todayDeaths.toLocaleString()} Deaths`, true)
         .setImage("https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/COVID-19_Outbreak_World_Map.svg/330px-COVID-19_Outbreak_World_Map.svg.png")
         .setColor(colors.main)
+        .setFooter("Too see graph for this country use the new `c.graph` command.")
         .setTimestamp();
       message.channel.send(embed);
-      message.channel.send("ℹ️ Pro Tip: You can view a graph with the cases of COVID-19 using `c.graph <country>`, for example `c.graph Italy` will show italy's graph.");
     } else {
       const countryInput = args.join(" ").toProperCase();
       var countries = await novelcovid.countries();
@@ -79,10 +79,10 @@ module.exports = {
         .addField("Deaths", `${country.deaths.toLocaleString()} (${((country.deaths / country.cases) * 100).toFixed(2)}%) Deaths`, true)
         .setThumbnail(`https://www.countryflags.io/${require("../data/countries_abbreviations.json")[country.country]}/flat/64.png`)
         .setColor(colors.main)
+        .setFooter("Too see graph for this country use the new `c.graph` command.")
         .setTimestamp();
       if (imageLink) embed.setImage(imageLink);
       message.channel.send(embed);
-      message.channel.send("ℹ️ Pro Tip: You can view a graph with the cases of COVID-19 using `c.graph <country>`, for example `c.graph Italy` will show italy's graph.");
     }
   },
 };
