@@ -1,5 +1,5 @@
 {
-  "name": "CoronaCord",
+  "name": "coronacord",
   "version": "1.0.0",
   "description": "A discord bot that shows info about the corona virus",
   "main": "index.js",
@@ -11,13 +11,13 @@
   "dependencies": {
     "chart.js": "^2.9.3",
     "chartjs-node-canvas": "^3.0.6",
+    "coronacord-api-wrapper": "git+https://github.com/MrAugu/coronacord-api-wrapper.git",
     "covid19-us": "^1.0.3",
     "dblapi.js": "^2.4.0",
     "discord.js": "^12.0.1",
     "moment": "^2.24.0",
     "mongoose": "^5.9.3",
     "node-fetch": "^2.6.0",
-    "novelcovid": "^1.0.4",
     "snekfetch": "^4.0.4"
   }
 }

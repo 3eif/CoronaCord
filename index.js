@@ -8,7 +8,7 @@ try {
 const DatasetSchedule = require("./dataset-schedule.json");
 const DatasetModel = require("./models/datasets.js");
 const fs = require("fs");
-const novelcovid = require("novelcovid");
+const novelcovid = require("coronacord-api-wrapper");
 const mongoose = require("mongoose");
 
 mongoose.connect(require("./tokens.json").db, {
@@ -79,7 +79,7 @@ manager.on("message", msg => console.log(`Message from shard: ${msg}`));
         });
         await document.save().catch(console.log);
         fs.writeFileSync("dataset-schedule.json", JSON.stringify({ lastImaged: Date.now() }));
-      }, 43200000);
-    }, ((DatasetSchedule["lastImaged"] + 43200000) - Date.now()));
+      }, 86400000);
+    }, ((DatasetSchedule["lastImaged"] + 86400000) - Date.now()));
   }
 }());

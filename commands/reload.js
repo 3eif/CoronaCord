@@ -7,8 +7,7 @@ module.exports = {
   usage: "<command>",
   permissions: "dev",
   async execute (client, message, args) {
-
-    if (message.author.id !== client.settings.devs) return;
+    if (!client.settings.devs.includes(message.author.id)) return;
 
     const commandName = args[0].toLowerCase();
     const command = message.client.commands.get(commandName)

@@ -1,6 +1,6 @@
 const Discord = require("discord.js"); // eslint-disable-line no-unused-vars
 const countriesJSON = require("../data/countries.json");
-const novelcovid = require("novelcovid");
+const novelcovid = require("coronacord-api-wrapper");
 const Datasets = require("../models/datasets.js");
 const { CanvasRenderService } = require("chartjs-node-canvas");
 
@@ -40,36 +40,32 @@ module.exports = {
 
     const ChartBuffer = await Canvas.renderToBuffer({
       type: "line",
-      label: "OwO whats this",
       data: {
         labels: countryRecords.map(record => `${record.date < 10 ? "0" : ""}${record.date}/${record.month < 10 ? "0" : ""}${record.month}`),
         datasets: [
           {
             label: "Confirmed",
             borderColor: "rgb(255,127,80)",
-            backgroundColor: "rgba(0,0,0,0)",
-            data: countryRecords.map(record => record.data.cases),
-            borderDash: [5, 5]
+            backgroundColor: "rgba(255,127,80,0.2)",
+            data: countryRecords.map(record => record.data.cases)
           },
           {
-            label: "Deaths",
+            label: "Dead",
             borderColor: "rgb(95,95,95)",
-            backgroundColor: "rgba(0,0,0,0)",
-            data: countryRecords.map(record => record.data.deaths),
-            borderDash: [10, 10]
+            backgroundColor: "rgba(95,95,95,0.2)",
+            data: countryRecords.map(record => record.data.deaths)
           },
           {
             label: "Recovered",
             borderColor: "rgb(0,255,127)",
-            backgroundColor: "rgba(0,0,0,0)",
-            data: countryRecords.map(record => record.data.recovered),
-            borderDash: [15, 15]
+            backgroundColor: "rgba(0,255,127,0.3)",
+            data: countryRecords.map(record => record.data.recovered)
           }
         ]
       }
     });
 
     const attachment = new Discord.MessageAttachment(ChartBuffer, "chart.png");
-    message.channel.send(attachment);
+    message.channel.send(`Cases graph for **${countries[name].country}:**`, attachment);
   }
 };
