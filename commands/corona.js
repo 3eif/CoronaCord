@@ -31,7 +31,7 @@ module.exports = {
         .addField("Today Deaths", `${todayDeaths.toLocaleString()} Deaths`, true)
         .setImage("https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/COVID-19_Outbreak_World_Map.svg/330px-COVID-19_Outbreak_World_Map.svg.png")
         .setColor(colors.main)
-        .setFooter("Too see graph for this country use the new `c.graph` command.")
+        .setFooter("To see graph for this country use the new `c.graph` command.")
         .setTimestamp();
       message.channel.send(embed);
     } else {
@@ -79,7 +79,7 @@ module.exports = {
         .addField("Deaths", `${country.deaths.toLocaleString()} (${((country.deaths / country.cases) * 100).toFixed(2)}%) Deaths`, true)
         .setThumbnail(`https://www.countryflags.io/${require("../data/countries_abbreviations.json")[country.country]}/flat/64.png`)
         .setColor(colors.main)
-        .setFooter("Too see graph for this country use the new `c.graph` command.")
+        .setFooter("To see graph for this country use the new `c.graph` command.")
         .setTimestamp();
       if (imageLink) embed.setImage(imageLink);
       message.channel.send(embed);
