@@ -38,6 +38,10 @@ module.exports = {
       });
     });
 
+    const cases = countryRecords.map(record => record.data.cases);
+    const deaths = countryRecords.map(record => record.data.deaths);
+    const recovers = countryRecords.map(record => record.data.recovered);
+
     const ChartBuffer = await Canvas.renderToBuffer({
       type: "line",
       data: {
@@ -45,21 +49,33 @@ module.exports = {
         datasets: [
           {
             label: "Confirmed",
-            borderColor: "rgb(255,127,80)",
-            backgroundColor: "rgba(255,127,80,0.2)",
-            data: countryRecords.map(record => record.data.cases)
+            borderColor: "rgb(179,0,179)",
+            //backgroundColor: "rgba(0,0,0,0)",
+            backgroundColor: "rgba(0,0,0,0)",
+            data: cases
+          },
+          {
+            label: "Infected",
+            borderColor: "rgb(255,165,0)",
+            //backgroundColor: "rgba(255,127,80,0.2)",
+            backgroundColor: "rgba(0,0,0,0)",
+            data: cases.map((record, index) => {
+              return record - deaths[index] - recovers[index];
+            })
           },
           {
             label: "Dead",
-            borderColor: "rgb(95,95,95)",
-            backgroundColor: "rgba(95,95,95,0.2)",
-            data: countryRecords.map(record => record.data.deaths)
+            borderColor: "#444444",
+            //backgroundColor: "rgba(0,0,0,0.1)",
+            backgroundColor: "rgba(0,0,0,0)",
+            data: deaths
           },
           {
             label: "Recovered",
-            borderColor: "rgb(0,255,127)",
-            backgroundColor: "rgba(0,255,127,0.3)",
-            data: countryRecords.map(record => record.data.recovered)
+            borderColor: "#059142",
+            //backgroundColor: "rgba(0,255,127,0.2)",
+            backgroundColor: "rgba(0,0,0,0)",
+            data: recovers
           }
         ]
       }
