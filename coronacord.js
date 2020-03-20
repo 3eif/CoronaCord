@@ -21,5 +21,9 @@ client.on("shardDisconnect", () => console.log("Disconnecting..."));
 client.on("shardReconnecting", () => console.log("Reconnecting..."));
 client.on("shardError", e => console.log(e));
 client.on("shardWarn", w => console.log(w));
+client.on("debug", (log) => {
+  require("fs").appendFileSync("debug.log", `
 
+${log}`);
+});
 client.login(tokens.discordToken);

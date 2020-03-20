@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const cooldowns = new Discord.Collection();
 const Event = require("../Event");
 const colors = require("../data/colors.json");
-
+const Command = require("../models/commands.js");
 const { webhooks } = require("../tokens.json");
 const webhookClient = new Discord.WebhookClient(webhooks["messageID"], webhooks["messageToken"]);
 
@@ -90,6 +90,13 @@ module.exports = class Message extends Event {
       //       }
       //   });
       // }
+      await (new Command({ 
+        name: cmd.name,
+        uid: message.author.id,
+        gid: message.guild.id,
+        timestamp: Date.now()
+      }).save());
+  
       await cmd.execute(this.client, message, args);
     } catch (e) {
       console.error(e);

@@ -2,3 +2,4 @@ node_modules
 tokens.json
 package-lock.json
 dataset-schedule.json
+debug.log
