@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 const Discord = require("discord.js");
-const colors = require("../../data/colors.json");
 
 module.exports = {
   name: "tips",
@@ -16,7 +15,7 @@ module.exports = {
       - Stay home if you think you might be sick.
       - If you have a fever, cough, or difficulty breathing, follow advice given by your government's health authority`)
       .setFooter("More information can be found on the CDC website: https://www.cdc.gov/coronavirus/2019-ncov/index.html")
-      .setColor(colors.main);
+      .setColor(client.colors.main);
     message.channel.send(embed);
   },
 };

@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 const Discord = require("discord.js");
-const colors = require("../../data/colors.json");
 const novelcovid = require("coronacord-api-wrapper");
 const { post } = require("snekfetch");
 
@@ -19,7 +18,7 @@ module.exports = {
     const embed = new Discord.MessageEmbed()
       .setAuthor("Top 10 Countries with most cases of Coronavirus", client.settings.avatar)
       .setDescription(topCountries)
-      .setColor(colors.main);
+      .setColor(client.colors.main);
     message.channel.send(embed);
   },
 };

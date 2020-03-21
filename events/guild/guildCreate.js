@@ -1,7 +1,6 @@
 const Discord = require("discord.js");
 const moment = require("moment");
 const Event = require("../../structures/Event");
-const colors = require("../../data/colors.json");
 const { webhooks } = require("../../tokens.json");
 
 const webhookClient = new Discord.WebhookClient(webhooks["guildID"], webhooks["guildToken"]);
@@ -15,7 +14,7 @@ module.exports = class GuildCreate extends Event {
 
     const embed = new Discord.MessageEmbed()
       .setAuthor(`Coronacord | Guild ID: ${guild.id}`, this.client.user.displayAvatarURL())
-      .setColor(colors.online)
+      .setColor(this.client.colors.online)
       .setThumbnail(guild.iconURL())
       .setDescription("Coronacord has been **ADDED** to a server.")
       .addField("Guild", `${guild.name}`, true)

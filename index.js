@@ -16,7 +16,7 @@ mongoose.connect(require("./tokens.json").db, {
   useUnifiedTopology: true
 });
 
-const manager = new ShardingManager("./coronacord.js", { 
+const manager = new ShardingManager("./coronacord.js", {
   token: discordToken,
   timeout: 999999
 });

@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 const Discord = require("discord.js");
-const colors = require("../../data/colors.json");
 const novelcovid = require("coronacord-api-wrapper");
 const { post } = require("snekfetch");
 
@@ -17,7 +16,7 @@ module.exports = {
       .setAuthor("Supported Countries", client.settings.avatar)
       .setTitle("All supported countries and names can be found here")
       .setURL(`https://www.hastebin.com/${body.key}.js`)
-      .setColor(colors.main);
+      .setColor(client.colors.main);
     message.channel.send(embed);
   },
 };

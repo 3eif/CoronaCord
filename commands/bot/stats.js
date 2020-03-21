@@ -1,13 +1,11 @@
 const Discord = require("discord.js");
-const colors = require("../../data/colors.json");
-const { loading } = require("../../data/emojis.json");
 
 module.exports = {
   name: "stats",
   description: "Displays the bot's stats",
   cooldown: "5",
   async execute (client, message, args) { // eslint-disable-line no-unused-vars
-    const msg = await message.channel.send(`${loading} Gathering stats...`);
+    const msg = await message.channel.send(`${client.emojiList.loading} Gathering stats...`);
     const used = process.memoryUsage().heapUsed / 1024 / 1024;
     // const usage = process.memoryUsage().rss / 1024 / 1024;
     const totalSeconds = process.uptime();
@@ -28,7 +26,7 @@ module.exports = {
 
         const statsEmbed = new Discord.MessageEmbed()
           .setAuthor("CoronaCord", client.user.displayAvatarURL())
-          .setColor(colors.main)
+          .setColor(client.colors.main)
           .setThumbnail(client.settings.avatar)
           .addField("Born On", client.user.createdAt)
           .addField("Current Version", client.settings.version, true)

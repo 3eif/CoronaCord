@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 const Discord = require("discord.js");
-const colors = require("../../data/colors.json");
 
 module.exports = {
   name: "symptoms",
@@ -15,7 +14,7 @@ module.exports = {
     - Complications: pneumonia, Acute respiratory distress syndrome (ARDS), kidney failure.
     - Risk Factors: age, serious underlying medical conditions (e.g. heart disease, diabetes, lung disease, etc).`)
       .setFooter("More information can be found on the CDC website: https://www.cdc.gov/coronavirus/2019-ncov/index.html")
-      .setColor(colors.main);
+      .setColor(client.colors.main);
     message.channel.send(embed);
   },
 };

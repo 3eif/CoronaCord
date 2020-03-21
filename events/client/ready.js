@@ -1,4 +1,3 @@
-const colors = require("../../data/colors.json");
 const Discord = require("discord.js");
 const Event = require("../../structures/Event");
 const { webhooks } = require("../../tokens.json");
@@ -32,7 +31,7 @@ class Ready extends Event {
 
           const embed = new Discord.MessageEmbed()
             .setAuthor("CoronaCord", this.client.settings.avatar)
-            .setColor(colors.main)
+            .setColor(this.client.colors.main)
             .setDescription("CoronaCord is online.")
             .addField("Shards", `**${this.client.shard.count}** shards`, true)
             .addField("Servers", `**${totalGuilds}** servers`, true)

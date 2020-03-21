@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const colors = require("../../data/colors.json");
 const countriesJSON = require("../../data/countries.json");
 const novelcovid = require("coronacord-api-wrapper");
 const fetch = require("node-fetch");
@@ -30,7 +29,7 @@ module.exports = {
         .addField("Today Cases", `${todayCases.toLocaleString()} Cases`, true)
         .addField("Today Deaths", `${todayDeaths.toLocaleString()} Deaths`, true)
         .setImage("https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/COVID-19_Outbreak_World_Map.svg/330px-COVID-19_Outbreak_World_Map.svg.png")
-        .setColor(colors.main)
+        .setColor(client.colors.main)
         .setFooter("To see graph for this country use the new `c.graph` command.")
         .setTimestamp();
       message.channel.send(embed);
@@ -76,8 +75,8 @@ module.exports = {
         .addField("Today Deaths", `${country.todayDeaths.toLocaleString()} Deaths`, true)
         .addField("Recovered", `${country.recovered.toLocaleString()} (${((country.recovered / country.cases) * 100).toFixed(2)}%) Recovered`)
         .addField("Deaths", `${country.deaths.toLocaleString()} (${((country.deaths / country.cases) * 100).toFixed(2)}%) Deaths`, true)
-        .setThumbnail(`https://www.countryflags.io/${require("../data/countries_abbreviations.json")[country.country]}/flat/64.png`)
-        .setColor(colors.main)
+        .setThumbnail(`https://www.countryflags.io/${require("../../data/countries_abbreviations.json")[country.country]}/flat/64.png`)
+        .setColor(client.colors.main)
         .setFooter("View the graph of cases for this country by typing `c.graph`.")
         .setTimestamp();
       if (imageLink) embed.setImage(imageLink);
