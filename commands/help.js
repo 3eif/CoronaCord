@@ -39,6 +39,7 @@ To get more info on a specific command do \`${client.settings.prefix}help <comma
 **ping** - bot's latency.
 **stats** - displays the bot's stats
 **support** - sends the support server for the bot.
+**top** - Shows the top 10 countries with the most cases of coronavirus.
 
 Need more help? Join the support server: ${client.settings.server}
 `;
