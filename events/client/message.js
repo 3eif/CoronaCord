@@ -2,7 +2,7 @@ const fs = require("fs");
 const Discord = require("discord.js");
 const cooldowns = new Discord.Collection();
 const Event = require("../../structures/Event");
-const Command = require("../models/commands.js");
+
 const users = require("../../models/user.js");
 const servers = require("../../models/server.js");
 const bot = require("../../models/bot.js");
@@ -43,11 +43,11 @@ module.exports = class Message extends Event {
         ignoreMsg = false;
       }
 
-      
-      if (message.content.indexOf(this.client.settings.prefix) === 0) {
+      const messageContent = message.content.toLowerCase();
+      if (messageContent.indexOf(this.client.settings.prefix) === 0) {
         prefix = this.client.settings.prefix;
       }
-      else if (message.content.split(" ")[0].match(mentionPrefix)) {
+      else if (messageContent.split(" ")[0].match(mentionPrefix)) {
         prefix = mentionPrefix;
       }
       else {
@@ -61,17 +61,17 @@ module.exports = class Message extends Event {
       let command;
 
       if (prefix === this.client.settings.prefix && !this.client.settings.prefix.endsWith(" ")) {
-        args = message.content.split(" ");
+        args = messageContent.split(" ");
         command = args.shift().toLowerCase();
         command = command.slice(this.client.settings.prefix.length);
       }
       else if (prefix === s.prefix && !s.prefix.endsWith(" ")) {
-        args = message.content.split(" ");
+        args = messageContent.split(" ");
         command = args.shift().toLowerCase();
         command = command.slice(s.prefix.length);
       }
       else {
-        args = message.content.split(" ");
+        args = messageContent.split(" ");
         args.shift();
         command = args.shift().toLowerCase();
       }
@@ -136,12 +136,12 @@ module.exports = class Message extends Event {
       const embed = new Discord.MessageEmbed()
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
         .setColor(this.client.colors.main)
-        .setDescription(`CoronaCord **${cmd.name}** command used by **${message.author.tag}** (${message.author.id})`)
+        .setDescription(`**${cmd.name}** command used by **${message.author.tag}** (${message.author.id})`)
         .setFooter(`${message.guild.name} (${message.guild.id})`, message.guild.iconURL())
         .setTimestamp();
 
       webhookClient.send({
-        username: "Corona",
+        username: "Ear Tensifier",
         avatarURL: this.client.settings.avatar,
         embeds: [embed],
       });
@@ -183,13 +183,6 @@ module.exports = class Message extends Event {
       }
 
       try {
-        await (new Command({ 
-          name: cmd.name,
-          uid: message.author.id,
-          gid: message.guild.id,
-          timestamp: Date.now()
-        }).save());
-    
         cmd.execute(this.client, message, args);
       }
       catch (e) {
