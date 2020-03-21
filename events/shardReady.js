@@ -1,4 +1,4 @@
-const Event = require("../Event");
+const Event = require("../structures/Event");
 
 module.exports = class ShardReady extends Event {
   constructor (...args) {

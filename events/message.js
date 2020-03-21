@@ -1,7 +1,7 @@
 const fs = require("fs");
 const Discord = require("discord.js");
 const cooldowns = new Discord.Collection();
-const Event = require("../Event");
+const Event = require("../structures/Event");
 const colors = require("../data/colors.json");
 
 const { webhooks } = require("../tokens.json");
