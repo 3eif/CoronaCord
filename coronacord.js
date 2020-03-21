@@ -14,7 +14,7 @@ const tokens = require("./tokens.json");
 // client.dbl = new DBL(tokens.dblToken, { webhookPort: 65335, webhookAuth: tokens.dblPassword }, this.client);
 
 ["commands","events"].forEach(handler => {
-  require(`./util/${handler}`)(client);
+  require(`./util/handlers/${handler}`)(client);
 });
 
 client.on("shardDisconnect", () => console.log("Disconnecting..."));

@@ -1,10 +1,10 @@
 const fs = require("fs");
 const Discord = require("discord.js");
 const cooldowns = new Discord.Collection();
-const Event = require("../structures/Event");
-const colors = require("../data/colors.json");
+const Event = require("../../structures/Event");
+const colors = require("../../data/colors.json");
 
-const { webhooks } = require("../tokens.json");
+const { webhooks } = require("../../tokens.json");
 const webhookClient = new Discord.WebhookClient(webhooks["messageID"], webhooks["messageToken"]);
 
 module.exports = class Message extends Event {

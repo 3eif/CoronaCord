@@ -1,5 +1,5 @@
 const Discord = require ("discord.js");  // eslint-disable-line no-unused-vars
-const { typing } = require("../data/emojis.json");
+const { typing } = require("../../data/emojis.json");
 
 module.exports = {
   name: "help",

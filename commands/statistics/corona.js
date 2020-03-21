@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
-const colors = require("../data/colors.json");
-const countriesJSON = require("../data/countries.json");
+const colors = require("../../data/colors.json");
+const countriesJSON = require("../../data/countries.json");
 const novelcovid = require("coronacord-api-wrapper");
 const fetch = require("node-fetch");
 

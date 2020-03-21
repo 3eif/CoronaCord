@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { main, online, offline } = require("../data/emojis.json");
+const { main, online, offline } = require("../../data/emojis.json");
 
 module.exports = {
   name: "shards",

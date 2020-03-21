@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const Discord = require("discord.js");
-const colors = require("../data/colors.json");
+const colors = require("../../data/colors.json");
 
 module.exports = {
   name: "tips",

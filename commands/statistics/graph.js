@@ -1,7 +1,7 @@
 const Discord = require("discord.js"); // eslint-disable-line no-unused-vars
-const countriesJSON = require("../data/countries.json");
+const countriesJSON = require("../../data/countries.json");
 const novelcovid = require("coronacord-api-wrapper");
-const Datasets = require("../models/datasets.js");
+const Datasets = require("../../models/datasets.js");
 const { CanvasRenderService } = require("chartjs-node-canvas");
 
 module.exports = {

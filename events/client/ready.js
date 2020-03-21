@@ -1,7 +1,7 @@
-const colors = require("../data/colors.json");
+const colors = require("../../data/colors.json");
 const Discord = require("discord.js");
-const Event = require("../structures/Event");
-const { webhooks } = require("../tokens.json");
+const Event = require("../../structures/Event");
+const { webhooks } = require("../../tokens.json");
 const webhookClient = new Discord.WebhookClient(webhooks["webhookID"], webhooks["webhookToken"]);
 
 class Ready extends Event {

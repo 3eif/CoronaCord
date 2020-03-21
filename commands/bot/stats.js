@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
-const colors = require("../data/colors.json");
-const { loading } = require("../data/emojis.json");
+const colors = require("../../data/colors.json");
+const { loading } = require("../../data/emojis.json");
 
 module.exports = {
   name: "stats",
