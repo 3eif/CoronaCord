@@ -46,7 +46,7 @@ module.exports = {
       } else {
         name = countryInput;
       }
-      if (!countries[name]) return message.channel.send("I couldn't find that country. That country either doesn't exist or was typed incorrectly. For a list of supported country names please type `c.countries`");
+      if (!countries[name]) return message.channel.send("I couldn't find that country. That country either doesn't exist, was typed incorrectly or has no confirmed cases. For a list of supported country names please type `c.countries`");
       const country = countries[name];
       var wikiName;
       const wikiAliases = {
