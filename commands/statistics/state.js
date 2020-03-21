@@ -10,6 +10,7 @@ module.exports = {
   usage: "<state>",
   args: true,
   async execute (client, message, args) {
+
     const stateInput = args.join(" ").toProperCase();
     var states = await novelcovid.states();
     const objStates = {};
