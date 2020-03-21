@@ -22,11 +22,11 @@ module.exports = {
       ]`);
 
     const embed = new Discord.MessageEmbed()
-      .setColor(this.client.colors.main)
+      .setColor(client.colors.main)
       .setAuthor("CoronaCord", client.user.displayAvatarURL());
 
     shardInfo.forEach(i => {
-      const status = i[1] === "process" ? this.client.emojiList.online : this.client.emojiList.offline;
+      const status = i[1] === "process" ? client.emojiList.online : client.emojiList.offline;
       embed.addField(`${status} Shard ${i[0]}`, `\`\`\`js
 Servers: ${i[2]}\nChannels: ${i[3]}\nUsers: ${i[4]}\nMemory: ${i[5]}\`\`\``, true);
     });
