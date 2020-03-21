@@ -78,7 +78,7 @@ module.exports = {
         .addField("Deaths", `${country.deaths.toLocaleString()} (${((country.deaths / country.cases) * 100).toFixed(2)}%) Deaths`, true)
         .setThumbnail(`https://www.countryflags.io/${require("../data/countries_abbreviations.json")[country.country]}/flat/64.png`)
         .setColor(colors.main)
-        .setFooter("To see graph for this country use the new `c.graph` command.")
+        .setFooter("View the graph of cases for this country by typing `c.graph`.")
         .setTimestamp();
       if (imageLink) embed.setImage(imageLink);
       message.channel.send(embed);
