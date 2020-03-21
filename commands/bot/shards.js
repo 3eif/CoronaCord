@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const { main, online, offline } = require("../data/emojis.json");
 
 module.exports = {
   name: "shards",
@@ -23,11 +22,11 @@ module.exports = {
       ]`);
 
     const embed = new Discord.MessageEmbed()
-      .setColor(main)
+      .setColor(this.client.colors.main)
       .setAuthor("CoronaCord", client.user.displayAvatarURL());
 
     shardInfo.forEach(i => {
-      const status = i[1] === "process" ? online : offline;
+      const status = i[1] === "process" ? this.client.emojiList.online : this.client.emojiList.offline;
       embed.addField(`${status} Shard ${i[0]}`, `\`\`\`js
 Servers: ${i[2]}\nChannels: ${i[3]}\nUsers: ${i[4]}\nMemory: ${i[5]}\`\`\``, true);
     });

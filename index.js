@@ -10,13 +10,14 @@ const DatasetModel = require("./models/datasets.js");
 const fs = require("fs");
 const novelcovid = require("coronacord-api-wrapper");
 const mongoose = require("mongoose");
+const tokens = require("./tokens.json");
 
-mongoose.connect(require("./tokens.json").db, {
+mongoose.connect(`mongodb+srv://${tokens.mongoUsername}:${encodeURIComponent(tokens.mongoPass)}@tetracyl-unhxi.mongodb.net/coronacord?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
-const manager = new ShardingManager("./coronacord.js", { 
+const manager = new ShardingManager("./coronacord.js", {
   token: discordToken,
   timeout: 999999
 });
