@@ -21,9 +21,9 @@ module.exports = {
     } else {
       name = stateInput;
     }
-    if (!states[name]) return message.channel.send("I couldn't find that state. That coustatentry either doesn't exist or was typed incorrectly.");
+    if (!states[name]) return message.channel.send("I couldn't find that state. That state either doesn't exist or was typed incorrectly.");
     const state = states[name];
-    
+
     var wikiName;
     wikiName = state.state;
 
@@ -40,11 +40,12 @@ module.exports = {
 
     var embed = new Discord.MessageEmbed()
       .setAuthor(state.state)
-      .setDescription(`**${state.cases.toLocaleString()} Confirmed Cases**`)
-      .addField("Today Cases", `${state.todayCases.toLocaleString()} Cases`, true)
-      .addField("Today Deaths", `${state.todayDeaths.toLocaleString()} Deaths`, true)
-      .addField("Recovered", `${state.recovered.toLocaleString()} (${((state.recovered / state.cases) * 100).toFixed(2)}%) Recovered`)
-      .addField("Deaths", `${state.deaths.toLocaleString()} (${((state.deaths / state.cases) * 100).toFixed(2)}%) Deaths`, true)
+      .addField("Confirmed Cases", `**${state.cases.toLocaleString()}**`, true)
+      .addField("Today Cases", `${state.todayCases.toLocaleString()}`, true)
+      .addField("Today Deaths", `${state.todayDeaths.toLocaleString()}`, true)
+      .addField("Active", `${state.active.toLocaleString()} (${((state.active / state.cases) * 100).toFixed(2)}%)`, true)
+      .addField("Recovered", `${state.recovered.toLocaleString()} (${((state.recovered / state.cases) * 100).toFixed(2)}%)`, true)
+      .addField("Deaths", `${state.deaths.toLocaleString()} (${((state.deaths / state.cases) * 100).toFixed(2)}%)`, true)
       .setThumbnail(flagURL)
       .setColor(client.colors.main)
       .setTimestamp();
