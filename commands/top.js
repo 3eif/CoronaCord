@@ -13,7 +13,7 @@ module.exports = {
 
     for (let i = 0; i < 10; i++) {
       const country = countryStats[i];
-      topCountries += `**${i+1}** - __${country.country}__: ${country.cases} cases - ${country.deaths} deaths - ${country.recovered} recovered\n`;
+      topCountries += `**${i+1}.** __${country.country}__: ${country.cases} cases - ${country.deaths} deaths - ${country.recovered} recovered\n`;
     }
 
     const embed = new Discord.MessageEmbed()

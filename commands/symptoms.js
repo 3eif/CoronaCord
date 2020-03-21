@@ -9,7 +9,7 @@ module.exports = {
     const embed = new Discord.MessageEmbed()
       .setAuthor("Coronavirus Symptoms", client.settings.avatar)
       .attachFiles(["./imgs/symptoms.PNG"])
-      .setThumbnail("attachment://symptoms.PNG")
+      .setImage("attachment://symptoms.PNG")
       .setDescription(`
     - Symptoms: fever, cough, shortness of breath.
     - Complications: pneumonia, Acute respiratory distress syndrome (ARDS), kidney failure.
