@@ -1,9 +1,10 @@
 const Discord = require("discord.js");
 const mongoose = require("mongoose");
+const tokens = require("./tokens.json");
 
-mongoose.connect(require("./tokens.json").db, {
+mongoose.connect(`mongodb+srv://${tokens.mongoUsername}:${encodeURIComponent(tokens.mongoPass)}@tetracyl-unhxi.mongodb.net/coronacord?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 const client = new Discord.Client();
@@ -11,11 +12,10 @@ client.commands = new Discord.Collection();
 client.settings = require("./settings.js");
 client.colors = require("./data/colors.json");
 client.emojiList = require("./data/emojis.json");
-const tokens = require("./tokens.json");
 // const DBL = require("dblapi.js");
 // client.dbl = new DBL(tokens.dblToken, { webhookPort: 65335, webhookAuth: tokens.dblPassword }, this.client);
 
-["commands","events"].forEach(handler => {
+["commands", "events"].forEach(handler => {
   require(`./util/handlers/${handler}`)(client);
 });
 

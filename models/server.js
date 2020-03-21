@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const serverSchema = mongoose.Schema({
-  serverID: { type: String },
-  serverName: { type: String },
-  prefix: { type: String, default: "c." },
-  feed: { type: String, default: [] },
+  serverID: String,
+  serverName: String,
+  prefix: String,
+  ignore: Array,
 });
 
-module.exports = mongoose.model("settings", serverSchema);
+module.exports = mongoose.model("servers", serverSchema);
