@@ -30,19 +30,15 @@ module.exports = {
 Type \`${client.settings.prefix}<command>\` to use a command. 
 To get more info on a specific command do \`${client.settings.prefix}help <command>\`
 
-**__NEW:__**
-View a graph of the cases for your country using:
-**graph <country>**
----
 **corona** - sends statistics about the corona virus.
 **corona [country]** - sends statistics about the corona virus in said country.
+**countries** - shows a list of supported countries and country names.
+**graph <country>** - displays a graph of the latest cases in a country.
 **help** - sends you a dm of detailed list of coronacord's commands.
 **invite** - sends the invite link for the bot.
-**ping** - bot's latency
-**shards** - displays the bot's shards
+**ping** - bot's latency.
 **stats** - displays the bot's stats
 **support** - sends the support server for the bot.
-**uptime** - displays the bot's uptime.
 
 Need more help? Join the support server: ${client.settings.server}
 `;
