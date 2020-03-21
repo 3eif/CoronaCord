@@ -25,6 +25,10 @@ module.exports = {
 
     const allDatasets = await Datasets.find();
 
+    if (name === "USA") name = "US";
+    if (name === "UK") name = "United Kingdom";
+    if (name === "S. Korea") name = "Korea, South";
+
     var countryRecords = allDatasets.map(dataset => ({ date: dataset.date, year: dataset.year, month: dataset.month, data: dataset.image.filter(img => img.country === name)[0] }));
     countryRecords = countryRecords.filter(record => record.data !== undefined);
     const width = 600;
@@ -83,6 +87,6 @@ module.exports = {
     });
 
     const attachment = new Discord.MessageAttachment(ChartBuffer, "chart.png");
-    message.channel.send(`Cases graph for **${countries[name].country}:**`, attachment);
+    message.channel.send(`Cases graph for **${countries[name] ? countries[name].country : name}:**`, attachment);
   }
 };
