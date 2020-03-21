@@ -3,8 +3,6 @@ const countriesJSON = require("../../data/countries.json");
 const novelcovid = require("coronacord-api-wrapper");
 const Datasets = require("../../models/datasets.js");
 const { CanvasRenderService } = require("chartjs-node-canvas");
-const fs = require("fs");
-
 
 module.exports = {
   name: "graph",
@@ -26,14 +24,6 @@ module.exports = {
     if (!countries[name]) return message.channel.send("Country not found.");
 
     const allDatasets = await Datasets.find();
-
-    fs.writeFile("./test.json", JSON.stringify(allDatasets), (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.log("File has been created");
-    });
 
     var countryRecords = allDatasets.map(dataset => ({ date: dataset.date, year: dataset.year, month: dataset.month, data: dataset.image.filter(img => img.country === name)[0] }));
     countryRecords = countryRecords.filter(record => record.data !== undefined);
