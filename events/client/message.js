@@ -26,7 +26,7 @@ module.exports = class Message extends Event {
 
     const mentionPrefix = new RegExp(`^<@!?${this.client.user.id}>( |)$`);
     let prefix;
-    let ignoreMsg;
+    let ignoreMsg = false;
     servers.findOne({
       serverID: message.guild.id,
     }, async (err, s) => {
@@ -43,14 +43,9 @@ module.exports = class Message extends Event {
         ignoreMsg = false;
       }
 
+      
       if (message.content.indexOf(this.client.settings.prefix) === 0) {
         prefix = this.client.settings.prefix;
-      }
-      else if (message.content.indexOf(s.prefix) === 0) {
-        prefix = s.prefix;
-      }
-      else if (message.content.indexOf(s.prefix) === 0) {
-        prefix = s.prefix;
       }
       else if (message.content.split(" ")[0].match(mentionPrefix)) {
         prefix = mentionPrefix;
@@ -58,7 +53,8 @@ module.exports = class Message extends Event {
       else {
         return;
       }
-      if (s.ignore.includes(message.channel.id)) ignoreMsg = true;
+
+      //if (s.ignore.includes(message.channel.id)) ignoreMsg = true;
 
       if (ignoreMsg) return;
       let args;
