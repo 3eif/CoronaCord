@@ -141,7 +141,7 @@ module.exports = class Message extends Event {
         .setTimestamp();
 
       webhookClient.send({
-        username: "Ear Tensifier",
+        username: "CoronaCord",
         avatarURL: this.client.settings.avatar,
         embeds: [embed],
       });
@@ -176,7 +176,7 @@ module.exports = class Message extends Event {
       }
 
       if (prefix == this.client.settings.prefix) {
-        if (cmd && !args[0] && cmd.args === true) return message.channel.send(`You didn't provide any arguments ${message.author}.\nCorrect Usage: \`ear ${cmd.name} ${cmd.usage}\``);
+        if (cmd && !args[0] && cmd.args === true) return message.channel.send(`You didn't provide any arguments ${message.author}.\nCorrect Usage: \`c.${cmd.name} ${cmd.usage}\``);
       }
       else if (cmd && !args[0] && cmd.args === true) {
         return message.channel.send(`You didn't provide any arguments ${message.author}.\nCorrect Usage: \`${prefix} ${cmd.name} ${cmd.usage}\` or \`${prefix}${cmd.name} ${cmd.usage}\``);

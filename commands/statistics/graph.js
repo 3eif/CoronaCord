@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const Discord = require("discord.js"); // eslint-disable-line no-unused-vars
 const countriesJSON = require("../../data/countries.json");
 const novelcovid = require("coronacord-api-wrapper");
@@ -31,13 +32,13 @@ module.exports = {
 
     var countryRecords = allDatasets.map(dataset => ({ date: dataset.date, year: dataset.year, month: dataset.month, data: dataset.image.filter(img => img.country === name)[0] }));
     countryRecords = countryRecords.filter(record => record.data !== undefined);
-    const width = 600;
-    const height = 600;
+    const width = 550;
+    const height = 350;
 
     const Canvas = new CanvasRenderService(width, height, (ChartJS) => {
       ChartJS.plugins.register({
         beforeDraw: (chart, options) => { // eslint-disable-line no-unused-vars
-          chart.ctx.fillStyle = "#FFFFFF";
+          chart.ctx.fillStyle = "rgb(47,49,54)";
           chart.ctx.fillRect(0, 0, width, height);
         }
       });
@@ -54,14 +55,13 @@ module.exports = {
         datasets: [
           {
             label: "Confirmed",
-            borderColor: "rgb(179,0,179)",
-            //backgroundColor: "rgba(0,0,0,0)",
-            backgroundColor: "rgba(0,0,0,0)",
+            borderColor: client.colors.confirmed,
+            backgroundColor: "#540660",
             data: cases
           },
           {
             label: "Infected",
-            borderColor: "rgb(255,165,0)",
+            borderColor: client.colors.infected,
             //backgroundColor: "rgba(255,127,80,0.2)",
             backgroundColor: "rgba(0,0,0,0)",
             data: cases.map((record, index) => {
@@ -69,24 +69,55 @@ module.exports = {
             })
           },
           {
-            label: "Dead",
-            borderColor: "#444444",
+            label: "Deaths",
+            borderColor: client.colors.deaths,
             //backgroundColor: "rgba(0,0,0,0.1)",
             backgroundColor: "rgba(0,0,0,0)",
             data: deaths
           },
           {
             label: "Recovered",
-            borderColor: "#059142",
+            borderColor: client.colors.recovered,
             //backgroundColor: "rgba(0,255,127,0.2)",
             backgroundColor: "rgba(0,0,0,0)",
             data: recovers
           }
         ]
+      }, options: {
+        title: {
+          display: true,
+          text: name,
+          fontColor: "white",
+          fontSize: 25
+        },
+        legend: {
+          labels: {
+            fontColor: "white"
+          }
+        },
+        scales: {
+          xAxes: [{
+            ticks: {
+              fontColor: "white"
+            }
+          }],
+          yAxes: [{
+            ticks: {
+              fontColor: "white"
+            }
+          }]
+        }
       }
     });
 
+    // eslint-disable-next-line no-unused-vars
     const attachment = new Discord.MessageAttachment(ChartBuffer, "chart.png");
-    message.channel.send(`Cases graph for **${countries[name] ? countries[name].country : name}:**`, attachment);
+
+    const embed = new Discord.MessageEmbed()
+      .attachFiles([attachment])
+      .setColor(client.colors.main)
+      .setImage("attachment://chart.png")
+      .setTimestamp();
+    message.channel.send(embed);
   }
 };
