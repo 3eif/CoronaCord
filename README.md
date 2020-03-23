@@ -7,15 +7,15 @@ CoronaCord is a discord bot that displays the latest stastics on the corona viru
 
 <div class="row">
   <div class="column">
-    <img src="./imgs/example1.png" alt="Image" style="width:100%">
+    <img src="./imgs/example1.PNG" alt="Image" style="width:100%">
   </div>
   <div class="column">
-    <img src="./imgs/example2.png" alt="Image" style="width:100%">
+    <img src="./imgs/example2.PNG" alt="Image" style="width:100%">
   </div>
 </div>
 <div class="row">
   <div class="column">
-    <img src="./imgs/example3.png" alt="Image" style="width:100%">
+    <img src="./imgs/example3.PNG" alt="Image" style="width:100%">
   </div>
 </div>
 
