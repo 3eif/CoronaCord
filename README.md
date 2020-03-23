@@ -5,23 +5,15 @@
 # CoronaCord
 CoronaCord is a discord bot that displays the latest stastics on the corona virus. Provides info on # of confirmed cases, # of recovered and # of deaths in almost 200 countries and 50 states.
 
-<center>
-  <div class="row">
-    <div class="column">
-      <img src="./imgs/example1.PNG" alt="Image" style="width:50%">
-    </div>
-    <div class="column">
-      <img src="./imgs/example2.PNG" alt="Image" style="width:50%">
-    </div>
-      <div class="column">
-      <img src="./imgs/example3.PNG" alt="Image" style="width:50%">
-    </div>
-  </div>
-</center>
+### Features
 
-### Prerequisites
+* `c.corona` Shows global stats about the corona virus.
+
+* <img src="./imgs/example2.PNG" alt="Image" style="width:500px; height: 300px;">
+
+### Self Hosting
 This bot currently does not support self hosting. If you would like to install this bot please contact Tetracyl [here](https://discord.gg/9M5qWfy)
 
-## License
+### License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
