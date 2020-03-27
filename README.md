@@ -2,8 +2,19 @@
     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F7%2F7c%2F2019-nCoV-CDC-23312.png%2F1200px-2019-nCoV-CDC-23312.png&f=1&nofb=1" width="150px" height="150px" /><br>
 </div>
 
+[![Discord](https://discordapp.com/api/guilds/685188144949100691/embed.png?style=shield)](https://discord.gg/9M5qWfy)
+[![Discord Bots](https://top.gg/api/widget/status/644977600057573389.svg?noavatar=true)](https://top.gg/bot/644977600057573389)
+[![Discord Bots](https://top.gg/api/widget/servers/644977600057573389.svg?noavatar=true)](https://top.gg/bot/644977600057573389)
+[![Discord Bots](https://top.gg/api/widget/upvotes/644977600057573389.svg?noavatar=true)](https://top.gg/bot/644977600057573389)
+[![Discord Bots](https://top.gg/api/widget/lib/644977600057573389.svg?noavatar=true)](https://top.gg/bot/644977600057573389)
+
+<hr>
+
 # CoronaCord
+
 CoronaCord is a discord bot that displays the latest stastics on the corona virus. Provides info on # of confirmed cases, # of recovered and # of deaths in almost 200 countries and 50 states.
+
+
 
 ## Add to Discord
 Click [here](https://discordapp.com/oauth2/authorize?client_id=644977600057573389&scope=bot&permissions=347136) to invite CoronaCord to your server. 
