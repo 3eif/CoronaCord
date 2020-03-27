@@ -42,7 +42,7 @@ Coronacord's default prefix is set as `c.`. To view a list of the bot's commands
 * <img src="./imgs/example5.PNG" alt="Image">
 
 ## Self Hosting
-Self hosting Ear Tensifier is not supported and no help will be provided. I am not responsible or liable for any self hosted clones of CoronaCord.
+Self hosting CoronaCord is not supported and no help will be provided. I am not responsible or liable for any self hosted clones of CoronaCord.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
