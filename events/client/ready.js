@@ -1,7 +1,8 @@
 const Discord = require("discord.js");
 const Event = require("../../structures/Event");
-const { webhooks } = require("../../tokens.json");
-const webhookClient = new Discord.WebhookClient(webhooks["webhookID"], webhooks["webhookToken"]);
+const tokens = require("../../tokens.json");
+const webhookClient = new Discord.WebhookClient(tokens.webhooks["webhookID"], tokens.webhooks["webhookToken"]);
+const DBL = require("dblapi.js");
 
 class Ready extends Event {
   constructor (...args) {
@@ -16,8 +17,6 @@ class Ready extends Event {
         this.client.shard.fetchClientValues("guilds.cache.size"),
         this.client.shard.broadcastEval("this.guilds.cache.reduce((prev, guild) => prev + guild.memberCount, 0)"),
       ];
-
-            
 
       return Promise.all(promises)
         .then(async results => {
@@ -44,7 +43,8 @@ class Ready extends Event {
             embeds: [embed],
           });
 
-          //this.client.dbl.postStats(totalGuilds, this.client.shard.id, this.client.shard.count);
+          this.client.dbl = new DBL(tokens.dblToken, { webhookPort: 23758, webhookAuth: tokens.dblPassword }, this.client);
+          this.client.dbl.postStats(totalGuilds, this.client.shard.id, this.client.shard.count);
         });
     }
   }

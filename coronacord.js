@@ -12,8 +12,6 @@ client.commands = new Discord.Collection();
 client.settings = require("./settings.js");
 client.colors = require("./data/colors.json");
 client.emojiList = require("./data/emojis.json");
-// const DBL = require("dblapi.js");
-// client.dbl = new DBL(tokens.dblToken, { webhookPort: 65335, webhookAuth: tokens.dblPassword }, this.client);
 
 ["commands", "events"].forEach(handler => {
   require(`./util/handlers/${handler}`)(client);
@@ -28,4 +26,5 @@ client.on("debug", (log) => {
 
 ${log}`);
 });
+
 client.login(tokens.discordToken);

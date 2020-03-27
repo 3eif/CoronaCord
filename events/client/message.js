@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const fs = require("fs");
 const Discord = require("discord.js");
 const cooldowns = new Discord.Collection();
@@ -76,7 +77,7 @@ module.exports = class Message extends Event {
         command = args.shift().toLowerCase();
       }
 
-      let messageUser = await users.findOne({ authorID: message.author.id });
+      /*let messageUser = await users.findOne({ authorID: message.author.id });
       if (!messageUser) {
         const newUser = new users({
           authorID: message.author.id,
@@ -86,28 +87,17 @@ module.exports = class Message extends Event {
         });
         await newUser.save().catch(e => console.log(e));
         messageUser = await users.findOne({ authorID: message.author.id });
-      }
+      }*/
 
-      if (messageUser.blocked == null) messageUser.blocked = false;
-      if (messageUser.blocked) ignoreMsg = true;
-      else if (!messageUser.blocked) messageUser.commandsUsed += 1;
-      await messageUser.save().catch(e => console.error(e));
+      //if (messageUser.blocked == null) messageUser.blocked = false;
+      //if (messageUser.blocked) ignoreMsg = true;
+      //else if (!messageUser.blocked) messageUser.commandsUsed += 1;
+      //await messageUser.save().catch(e => console.error(e));
       const cmd = this.client.commands.get(command) || this.client.commands.find(c => c.aliases && c.aliases.includes(command));
-      if (!cmd) {
-        if (fs.existsSync(`./commands/${command}.js`)) {
-          try {
-            const commandFile = require(`./commands/${command}.js`);
-            if (commandFile) commandFile.run(this.client, message, args);
-          }
-          catch (error) {
-            console.error(error);
-            message.reply("There was an error trying to execute that command!");
-          }
-        }
-        return;
-      }
+      if (!cmd) return;
 
-      const b = await bot.findOne({ clientID: this.client.user.id });
+
+      /*const b = await bot.findOne({ clientID: this.client.user.id });
       if (!b) {
         const newClient = new bot({
           clientID: this.client.user.id,
@@ -131,7 +121,7 @@ module.exports = class Message extends Event {
       }
 
       c.timesUsed += 1;
-      await c.save().catch(e => console.log(e));
+      await c.save().catch(e => console.log(e));*/
       console.log(`${cmd.name} used by ${message.author.tag} (${message.author.id}) from ${message.guild.name} (${message.guild.id})`);
       const embed = new Discord.MessageEmbed()
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
@@ -183,6 +173,10 @@ module.exports = class Message extends Event {
       }
 
       try {
+        const random = Math.floor(Math.random() * 5); 
+        if (random == 1) {
+          message.channel.send("**Enjoying the bot?** Vote for it here (it only takes a few seconds!): <https://top.gg/bot/644977600057573389/vote>");
+        }
         cmd.execute(this.client, message, args);
       }
       catch (e) {
