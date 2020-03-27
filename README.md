@@ -2,7 +2,7 @@
     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F7%2F7c%2F2019-nCoV-CDC-23312.png%2F1200px-2019-nCoV-CDC-23312.png&f=1&nofb=1" width="150px" height="150px" /><br>
 </div>
 
-[![Discord](https://discordapp.com/api/guilds/685188144949100691/embed.png?style=shield)](https://discord.gg/9M5qWfy)
+[![Discord](https://discordapp.com/api/guilds/685188144949100691/embed.png?style=banner2)](https://discord.gg/9M5qWfy)
 [![Discord Bots](https://top.gg/api/widget/status/644977600057573389.svg?noavatar=true)](https://top.gg/bot/644977600057573389)
 [![Discord Bots](https://top.gg/api/widget/servers/644977600057573389.svg?noavatar=true)](https://top.gg/bot/644977600057573389)
 [![Discord Bots](https://top.gg/api/widget/upvotes/644977600057573389.svg?noavatar=true)](https://top.gg/bot/644977600057573389)
@@ -44,7 +44,7 @@ Coronacord's default prefix is set as `c.`. To view a list of the bot's commands
 * <img src="./imgs/example5.PNG" alt="Image">
 
 ## Self Hosting
-This bot currently does not support self hosting. If you would like to install this bot please contact Tetracyl [here](https://discord.gg/9M5qWfy)
+Self hosting Ear Tensifier is not supported and no help will be provided. I am not responsible or liable for any self hosted clones of CoronaCord.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
