@@ -13,9 +13,21 @@ class Ready extends Event {
     console.log(this.client.users.cache.size);
     this.client.user.setActivity("c.help");
     this.client.users.cache = new Discord.Collection();
-    setInterval(() => {
+    await this.client.users.fetch("644977600057573389");
+    setInterval(async () => {
+      await this.client.users.fetch("644977600057573389");
       this.client.users.cache = new Discord.Collection();
-    }, 60000);
+
+      this.client.guilds.cache.forEach(guild => {
+        this.client.guilds.cache.get(guild.id).emojis.cahe = new Discord.Collection();
+        this.client.guilds.cache.get(guild.id).members.cache = new Discord.Collection();
+        //this.client.guilds.cache.get(guild.id).roles.cache = new Discord.Collection();
+        this.client.guilds.cache.get(guild.id).voiceStates.cache = new Discord.Collection();
+        this.client.guilds.cache.get(guild.id).channels.cache.forEach(channel => {
+          if (channel.type == "category") this.client.guilds.cache.get(guild.id).channels.cache.delete(channel.id);
+        });
+      });
+    }, 6000);
     if (this.client.shard.ids == this.client.shard.count - 1) {
       const promises = [
         this.client.shard.fetchClientValues("guilds.cache.size"),
