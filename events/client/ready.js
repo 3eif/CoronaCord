@@ -23,11 +23,8 @@ class Ready extends Event {
         this.client.guilds.cache.get(guild.id).members.cache = new Discord.Collection();
         //this.client.guilds.cache.get(guild.id).roles.cache = new Discord.Collection();
         this.client.guilds.cache.get(guild.id).voiceStates.cache = new Discord.Collection();
-        this.client.guilds.cache.get(guild.id).channels.cache.forEach(channel => {
-          if (channel.type == "category") this.client.guilds.cache.get(guild.id).channels.cache.delete(channel.id);
-        });
         this.client.channels.cache.forEach(channel => {
-          if (channel.type == "category") this.client.channels.cache.delete(channel.id);
+          //if (channel.type == "category") this.client.channels.cache.delete(channel.id);
           if (channel.type == "voice") this.client.channels.cache.delete(channel.id);
           if (channel.type == "dm") this.client.channels.cache.delete(channel.id);
         });
