@@ -129,11 +129,11 @@ module.exports = class Message extends Event {
         await c.save().catch(e => console.log(e));
       });
 
-      console.log(`${cmd.name} used by ${message.author.tag} (${message.author.id}) from ${message.guild.name} (${message.guild.id})`);
+      console.log(`[Shard #${this.client.shard.ids}] ${cmd.name} used by ${message.author.tag} (${message.author.id}) from ${message.guild.name} (${message.guild.id})`);
       const embed = new Discord.MessageEmbed()
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
         .setColor(this.client.colors.main)
-        .setDescription(`**${cmd.name}** command used by **${message.author.tag}** (${message.author.id})`)
+        .setDescription(`[Shard #${this.client.shard.ids}] **${cmd.name}** command used by **${message.author.tag}** (${message.author.id})`)
         .setFooter(`${message.guild.name} (${message.guild.id})`, message.guild.iconURL())
         .setTimestamp();
 
