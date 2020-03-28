@@ -10,8 +10,12 @@ class Ready extends Event {
   }
 
   async run (client) { // eslint-disable-line no-unused-vars
+    console.log(this.client.users.cache.size);
     this.client.user.setActivity("c.help");
-
+    this.client.users.cache = new Discord.Collection();
+    setInterval(() => {
+      this.client.users.cache = new Discord.Collection();
+    }, 60000);
     if (this.client.shard.ids == this.client.shard.count - 1) {
       const promises = [
         this.client.shard.fetchClientValues("guilds.cache.size"),

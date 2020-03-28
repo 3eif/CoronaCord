@@ -77,51 +77,57 @@ module.exports = class Message extends Event {
         command = args.shift().toLowerCase();
       }
 
-      let messageUser = await users.findOne({ authorID: message.author.id });
-      if (!messageUser) {
-        const newUser = new users({
-          authorID: message.author.id,
-          authorName: message.author.tag,
-          commandsUsed: 0,
-          blocked: false,
-        });
-        await newUser.save().catch(e => console.log(e));
-        messageUser = await users.findOne({ authorID: message.author.id });
-      }
+      users.findOne({ authorID: message.author.id }).then(async messageUser => {
+        if (!messageUser) {
+          const newUser = new users({
+            authorID: message.author.id,
+            authorName: message.author.tag,
+            commandsUsed: 0,
+            blocked: false,
+          });
+          await newUser.save().catch(e => console.log(e));
+          messageUser = await users.findOne({ authorID: message.author.id });
+        }
+  
+        if (messageUser.blocked == null) messageUser.blocked = false;
+        if (messageUser.blocked) ignoreMsg = true;
+        else if (!messageUser.blocked) messageUser.commandsUsed += 1;
+        messageUser.save().catch(e => console.error(e));
+      });
 
-      if (messageUser.blocked == null) messageUser.blocked = false;
-      if (messageUser.blocked) ignoreMsg = true;
-      else if (!messageUser.blocked) messageUser.commandsUsed += 1;
-      await messageUser.save().catch(e => console.error(e));
       const cmd = this.client.commands.get(command) || this.client.commands.find(c => c.aliases && c.aliases.includes(command));
       if (!cmd) return;
 
+      /* Async Non-Blocking */
+      bot.findOne({ clientID: this.client.user.id }).then(async b => {
+        if (!b) {
+          const newClient = new bot({
+            clientID: this.client.user.id,
+            clientName: this.client.user.name,
+            messagesSent: 0,
+          });
+          await newClient.save().catch(e => console.log(e));
+        }
+  
+        b.messagesSent += 1;
+        b.save().catch(e => console.log(e));
+      });
 
-      const b = await bot.findOne({ clientID: this.client.user.id });
-      if (!b) {
-        const newClient = new bot({
-          clientID: this.client.user.id,
-          clientName: this.client.user.name,
-          messagesSent: 0,
-        });
-        await newClient.save().catch(e => console.log(e));
-      }
+      /* Async Non-Blocking */
+      commandsSchema.findOne({ commandName: cmd.name }).then(async c => {
+        if (!c) {
+          const newCommand = new commandsSchema({
+            commandName: cmd.name,
+            timesUsed: 0,
+          });
+          await newCommand.save().catch(e => console.log(e));
+          c = await commandsSchema.findOne({ commandName: cmd.name });
+        }
+  
+        c.timesUsed += 1;
+        await c.save().catch(e => console.log(e));
+      });
 
-      b.messagesSent += 1;
-      await b.save().catch(e => console.log(e));
-      
-      let c = await commandsSchema.findOne({ commandName: cmd.name });
-      if (!c) {
-        const newCommand = new commandsSchema({
-          commandName: cmd.name,
-          timesUsed: 0,
-        });
-        await newCommand.save().catch(e => console.log(e));
-        c = await commandsSchema.findOne({ commandName: cmd.name });
-      }
-
-      c.timesUsed += 1;
-      await c.save().catch(e => console.log(e));
       console.log(`${cmd.name} used by ${message.author.tag} (${message.author.id}) from ${message.guild.name} (${message.guild.id})`);
       const embed = new Discord.MessageEmbed()
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())

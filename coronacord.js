@@ -7,7 +7,13 @@ mongoose.connect(`mongodb+srv://${tokens.mongoUsername}:${encodeURIComponent(tok
   useUnifiedTopology: true,
 });
 
-const client = new Discord.Client();
+const client = new Discord.Client({
+  messageCacheMaxSize: 10,
+  messageCacheLifetime: 20,
+  messageSweepInterval: 30
+});
+
+client.events = [];
 client.commands = new Discord.Collection();
 client.settings = require("./settings.js");
 client.colors = require("./data/colors.json");
@@ -17,6 +23,7 @@ client.emojiList = require("./data/emojis.json");
   require(`./util/handlers/${handler}`)(client);
 });
 
+client.on("raw", () => client.events.push({ timestamp: Date.now() }));
 client.on("shardDisconnect", () => console.log("Disconnecting..."));
 client.on("shardReconnecting", () => console.log("Reconnecting..."));
 client.on("shardError", e => console.log(e));
