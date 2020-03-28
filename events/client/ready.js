@@ -29,7 +29,7 @@ class Ready extends Event {
           if (channel.type == "dm") this.client.channels.cache.delete(channel.id);
         });
       });
-    }, 6000);
+    }, 60000);
     if (this.client.shard.ids == this.client.shard.count - 1) {
       const promises = [
         this.client.shard.fetchClientValues("guilds.cache.size"),
