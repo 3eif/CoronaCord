@@ -50,14 +50,16 @@ class Ready extends Event {
             .setTimestamp()
             .setFooter(`${totalMembers} users`);
 
-          webhookClient.send({
-            username: "CoronaCord",
-            avatarURL: this.client.settings.avatar,
-            embeds: [embed],
-          });
+          if (tokens.env !== "local") {
+            webhookClient.send({
+              username: "CoronaCord",
+              avatarURL: this.client.settings.avatar,
+              embeds: [embed],
+            });
 
-          this.client.dbl = new DBL(tokens.dblToken, { webhookPort: 23758, webhookAuth: tokens.dblPassword }, this.client);
-          this.client.dbl.postStats(totalGuilds, this.client.shard.id, this.client.shard.count);
+            this.client.dbl = new DBL(tokens.dblToken, { webhookPort: 23758, webhookAuth: tokens.dblPassword }, this.client);
+            this.client.dbl.postStats(totalGuilds, this.client.shard.id, this.client.shard.count);
+          }
         });
     }
   }

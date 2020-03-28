@@ -10,7 +10,8 @@ mongoose.connect(`mongodb://${tokens.mongoIP}:${tokens.mongoPort}/coronacord`, {
 const client = new Discord.Client({
   messageCacheMaxSize: 10,
   messageCacheLifetime: 20,
-  messageSweepInterval: 30
+  messageSweepInterval: 30,
+  intents: ["GUILD_MESSAGES", "GUILDS"]
 });
 
 client.events = [];
