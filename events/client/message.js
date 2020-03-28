@@ -129,11 +129,11 @@ module.exports = class Message extends Event {
         await c.save().catch(e => console.log(e));
       });
 
-      console.log(`${cmd.name} used by ${message.author.tag} (${message.author.id}) from ${message.guild.name} (${message.guild.id})`);
+      console.log(`[Shard #${this.client.shard.ids}] ${cmd.name} used by ${message.author.tag} (${message.author.id}) from ${message.guild.name} (${message.guild.id})`);
       const embed = new Discord.MessageEmbed()
         .setAuthor(`${message.author.username}`, message.author.displayAvatarURL())
         .setColor(this.client.colors.main)
-        .setDescription(`**${cmd.name}** command used by **${message.author.tag}** (${message.author.id})`)
+        .setDescription(`[Shard #${this.client.shard.ids}] **${cmd.name}** command used by **${message.author.tag}** (${message.author.id})`)
         .setFooter(`${message.guild.name} (${message.guild.id})`, message.guild.iconURL())
         .setTimestamp();
 
@@ -180,10 +180,10 @@ module.exports = class Message extends Event {
       }
 
       try {
-        const random = Math.floor(Math.random() * 5); 
-        if (random == 1) {
-          message.channel.send("**Enjoying the bot?** Vote for it here (it only takes a few seconds!): <https://top.gg/bot/644977600057573389/vote>");
-        }
+        // const random = Math.floor(Math.random() * 5); 
+        // if (random == 1) {
+        //   message.channel.send("**Enjoying the bot?** Vote for it here (it only takes a few seconds!): <https://top.gg/bot/644977600057573389/vote>");
+        // }
         cmd.execute(this.client, message, args);
       }
       catch (e) {

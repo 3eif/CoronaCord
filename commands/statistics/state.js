@@ -39,14 +39,13 @@ module.exports = {
       if (state.state == statesJson[i].state) flagURL = statesJson[i].state_flag_url;
     }
 
-    var embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
       .setAuthor(state.state)
       .addField("Confirmed Cases", `**${state.cases.toLocaleString()}**`, true)
-      // .addField("Today Cases", `${state.todayCases.toLocaleString()}`, true)
-      // .addField("Today Deaths", `${state.todayDeaths.toLocaleString()}`, true)
-      // .addField("Active", `${state.active.toLocaleString()} (${((state.active / state.cases) * 100).toFixed(2)}%)`, true)
-      // .addField("Recovered", `${state.recovered.toLocaleString()} (${((state.recovered / state.cases) * 100).toFixed(2)}%)`, true)
-      // .addField("Deaths", `${state.deaths.toLocaleString()} (${((state.deaths / state.cases) * 100).toFixed(2)}%)`, true)
+      .addField("Today Cases", `+${state.todayCases.toLocaleString()}`, true)
+      .addField("Today Deaths", `+${state.todayDeaths.toLocaleString()}`, true)
+      .addField("Active", `${state.active.toLocaleString()} (${((state.active / state.cases) * 100).toFixed(2)}%)`, true)
+      .addField("Deaths", `${state.deaths.toLocaleString()} (${((state.deaths / state.cases) * 100).toFixed(2)}%)`, true)
       .setThumbnail(flagURL)
       .setColor(client.colors.main)
       .setTimestamp();

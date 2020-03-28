@@ -1,4 +1,4 @@
-const { ShardingManager } = require("discord.js");
+const {ShardingManager } = require("discord.js");
 const { discordToken } = require("./tokens.json");
 try {
   require("./dataset-schedule.json");
@@ -19,7 +19,8 @@ mongoose.connect(`mongodb://${tokens.mongoIP}:${tokens.mongoPort}/coronacord`, {
 
 const manager = new ShardingManager("./coronacord.js", {
   token: discordToken,
-  timeout: 999999
+  timeout: 999999,
+  totalShards: 10
 });
 
 manager.on("launch", shard => {
