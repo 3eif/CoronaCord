@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const mongoose = require("mongoose");
 const tokens = require("./tokens.json");
 
-mongoose.connect(`mongodb+srv://${tokens.mongoUsername}:${encodeURIComponent(tokens.mongoPass)}@tetracyl-unhxi.mongodb.net/coronacord?retryWrites=true&w=majority`, {
+mongoose.connect(`mongodb://${tokens.mongoIP}:${tokens.mongoPort}/coronacord`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
