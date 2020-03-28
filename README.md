@@ -1,6 +1,7 @@
 <div align="center">
     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F7%2F7c%2F2019-nCoV-CDC-23312.png%2F1200px-2019-nCoV-CDC-23312.png&f=1&nofb=1" width="150px" height="150px" /><br>
 </div>
+<a href="https://www.buymeacoffee.com/tetra" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-blue.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
 
 [![Discord](https://discordapp.com/api/guilds/685188144949100691/embed.png?style=shield)](https://discord.gg/9M5qWfy)
 [![Discord Bots](https://top.gg/api/widget/status/644977600057573389.svg?noavatar=true)](https://top.gg/bot/644977600057573389)
