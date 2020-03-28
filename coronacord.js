@@ -24,8 +24,8 @@ client.emojiList = require("./data/emojis.json");
 });
 
 client.on("raw", () => client.events.push({ timestamp: Date.now() }));
-client.on("shardDisconnect", () => console.log("Disconnecting..."));
-client.on("shardReconnecting", () => console.log("Reconnecting..."));
+client.on("shardDisconnect", () => process.exit(1));
+client.on("shardReconnecting", () => process.exit(1));
 client.on("shardError", e => console.log(e));
 client.on("shardWarn", w => console.log(w));
 client.on("debug", (log) => {

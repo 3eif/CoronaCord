@@ -10,6 +10,7 @@ module.exports = {
     const promises = [
       client.shard.fetchClientValues("guilds.cache.size"),
       client.shard.broadcastEval("this.guilds.cache.reduce((prev, guild) => prev + guild.memberCount, 0)"),
+      client.shard.fetchClientValues("events")
     ];
 
     var shardInfo = await client.shard.broadcastEval(`[
@@ -19,6 +20,8 @@ module.exports = {
         this.channels.cache.size,
         this.users.cache.size,
         (process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2),
+        this.events,
+        this.ws.ping
       ]`);
 
     const embed = new Discord.MessageEmbed()
@@ -28,7 +31,7 @@ module.exports = {
     shardInfo.forEach(i => {
       const status = i[1] === "process" ? client.emojiList.online : client.emojiList.offline;
       embed.addField(`${status} Shard ${i[0]}`, `\`\`\`js
-Servers: ${i[2]}\nChannels: ${i[3]}\nUsers: ${i[4]}\nMemory: ${i[5]}\`\`\``, true);
+Servers: ${i[2]}\nChannels: ${i[3]}\nUsers: ${i[4]}\nMemory: ${i[5]}\nAPI Latency: ${i[7]}ms\nEvents: 1M: ${i[6].filter(e => (Date.now() - e.timestamp) < 60000).length.toLocaleString()}, 15M: ${i[6].filter(e => (Date.now() - e.timestamp) < 900000).length.toLocaleString()}, 1H: ${i[6].filter(e => (Date.now() - e.timestamp) < 3600000).length.toLocaleString()}\nTotal: ${i[6].length.toLocaleString()} Events\`\`\``, true);
     });
 
     Promise.all(promises)
