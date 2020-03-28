@@ -1,3 +1,15 @@
 {
-    "discordToken": ""
+    "discordToken": "",
+    "mongoUsername": "",
+    "mongoPass": "",
+    "webhooks": {
+        "webhookID": "",
+        "webhookToken": "",
+        "guildID": "",
+        "guildToken": "",
+        "messageID": "",
+        "messageToken": ""
+    },
+    "dblToken": "",
+    "dblPassword": ""
 }
