@@ -26,6 +26,11 @@ class Ready extends Event {
         this.client.guilds.cache.get(guild.id).channels.cache.forEach(channel => {
           if (channel.type == "category") this.client.guilds.cache.get(guild.id).channels.cache.delete(channel.id);
         });
+        this.client.channels.cache.forEach(channel => {
+          if (channel.type == "category") this.client.channels.cache.delete(channel.id);
+          if (channel.type == "voice") this.client.channels.cache.delete(channel.id);
+          if (channel.type == "dm") this.client.channels.cache.delete(channel.id);
+        });
       });
     }, 6000);
     if (this.client.shard.ids == this.client.shard.count - 1) {
