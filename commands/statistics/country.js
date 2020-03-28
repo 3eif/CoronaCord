@@ -42,9 +42,7 @@ module.exports = {
     const ImageLink = ImageRegex.exec(WikiPage);
     let imageLink;
     if (ImageLink) imageLink = ImageLink[1];
-    console.log(countryInput);
     if (countryInput.toLowerCase() == "uk") imageLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/COVID-19_outbreak_UK_case_counts.svg/640px-COVID-19_outbreak_UK_case_counts.svg.png";
-    console.log(imageLink);
 
     const embed = new Discord.MessageEmbed()
       .setAuthor(country.country)
