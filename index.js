@@ -17,11 +17,18 @@ mongoose.connect(`mongodb://${tokens.mongoIP}:${tokens.mongoPort}/coronacord`, {
   useUnifiedTopology: true,
 });
 
-const manager = new ShardingManager("./coronacord.js", {
+var baseOptions = {
   token: discordToken,
-  timeout: 999999,
-  totalShards: 10
-});
+  timeout: 999999
+};
+
+if (tokens.env !== "local") {
+  baseOptions.totalShards = 10;
+} else {
+  baseOptions.totalShards = 2;
+}
+
+const manager = new ShardingManager("./coronacord.js", baseOptions);
 
 manager.on("launch", shard => {
   console.log(`Shard [${shard.id}] launched`);

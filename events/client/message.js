@@ -108,6 +108,7 @@ module.exports = class Message extends Event {
             messagesSent: 0,
           });
           await newClient.save().catch(e => console.log(e));
+          b = await bot.findOne({ clientID: this.client.user.id });
         }
   
         b.messagesSent += 1;

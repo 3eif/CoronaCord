@@ -32,6 +32,7 @@ module.exports = {
           .addField("Current Version", client.settings.version, true)
           .addField("Servers", `${totalGuilds} servers`, true)
           .addField("Members", `${totalMembers} members`, true)
+          .addField("Events", `\`\`\`js\n1M: ${client.events.filter(e => ((Date.now() - 1585425784085) - e.t) < 60000).length.toLocaleString()}\n15M: ${client.events.filter(e => ((Date.now() - 1585425784085) - e.t) < 900000).length.toLocaleString()}\n1H: ${client.events.filter(e => ((Date.now() - 1585425784085) - e.t) < 3600000).length.toLocaleString()}\nTotal: ${client.events.length.toLocaleString()}\`\`\``, true)
           .addField("Shards", `${parseInt(client.shard.ids) + 1}/${client.shard.count}`, true)
           .addField("Memory Used", `${Math.round(used * 100) / 100}MB`, true)
           .addField("Uptime", `${days} days, ${hours} hours, ${mins} minutes, and ${realTotalSecs} seconds`)

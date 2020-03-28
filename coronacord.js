@@ -23,7 +23,7 @@ client.emojiList = require("./data/emojis.json");
   require(`./util/handlers/${handler}`)(client);
 });
 
-client.on("raw", () => client.events.push({ timestamp: Date.now() }));
+client.on("raw", () => client.events.push({ t: Date.now() - 1585425784085 }));
 client.on("shardDisconnect", () => process.exit(1));
 client.on("shardReconnecting", () => process.exit(1));
 client.on("shardError", e => console.log(e));
