@@ -20,7 +20,7 @@ mongoose.connect(`mongodb+srv://${tokens.mongoUsername}:${encodeURIComponent(tok
 const manager = new ShardingManager("./coronacord.js", {
   token: discordToken,
   timeout: 999999,
-  totalShards: 6
+  totalShards: 10
 });
 
 manager.on("launch", shard => {
