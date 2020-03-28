@@ -47,4 +47,5 @@ Self hosting CoronaCord is not supported and no help will be provided. I am not 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
+## Donate
 <a href="https://www.buymeacoffee.com/tetra" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-blue.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
