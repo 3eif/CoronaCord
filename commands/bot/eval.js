@@ -3,7 +3,7 @@ module.exports = {
   description: "?",
   async execute (client, message, args) { // eslint-disable-line no-unused-vars
     if (!["275831434772742144", "367302593753645057"].includes(message.author.id)) return;
-    const code = args.join(" ");
+    const code = message.content.split(" ").slice(1).join(" ");
     try {
       const evaluat = async (c) => eval(c);
       const evaled = await evaluat(code);
