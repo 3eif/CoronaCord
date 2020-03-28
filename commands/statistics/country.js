@@ -40,19 +40,23 @@ module.exports = {
     const WikiPage = await fetch(`https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_${thePrefixedContries.includes(wikiName) ? "the_" : ""}${wikiName.replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_")}`).then(res => res.text());
     const ImageRegex = /<meta property="og:image" content="([^<]*)"\/>/;
     const ImageLink = ImageRegex.exec(WikiPage);
-    var imageLink;
+    let imageLink;
     if (ImageLink) imageLink = ImageLink[1];
   
-    var embed = new Discord.MessageEmbed()
+    const embed = new Discord.MessageEmbed()
       .setAuthor(country.country)
-      .setDescription(`**${country.cases.toLocaleString()} Confirmed Cases**`)
-      .addField("Today Cases", `${country.todayCases.toLocaleString()} Cases`, true)
-      .addField("Today Deaths", `${country.todayDeaths.toLocaleString()} Deaths`, true)
-      .addField("Recovered", `${country.recovered.toLocaleString()} (${((country.recovered / country.cases) * 100).toFixed(2)}%) Recovered`)
-      .addField("Deaths", `${country.deaths.toLocaleString()} (${((country.deaths / country.cases) * 100).toFixed(2)}%) Deaths`, true)
+      .addField("Confirmed Cases", `**${country.cases.toLocaleString()}**`, true)
+      .addField("Today Cases", `+${country.todayCases.toLocaleString()}`, true)
+      .addField("Today Deaths", `+${country.todayDeaths.toLocaleString()}`, true)
+      .addField("Active", `${country.active.toLocaleString()} (${((country.active / country.cases) * 100).toFixed(2)}%)`, true)
+      .addField("Recovered", `${country.recovered.toLocaleString()} (${((country.recovered / country.cases) * 100).toFixed(2)}%)`, true)
+      .addField("Deaths", `${country.deaths.toLocaleString()} (${((country.deaths / country.cases) * 100).toFixed(2)}%)`, true)
+      .addField("Cases Per Million", `${country.casesPerOneMillion.toLocaleString()}`, true)
+      .addField("Deaths Per Million", `${country.deathsPerOneMillion.toLocaleString()}`, true)
+      .addField("First Case", `${country.firstCaseDate}`, true)
       .setThumbnail(`https://www.countryflags.io/${require("../../data/countries_abbreviations.json")[country.country]}/flat/64.png`)
       .setColor(client.colors.main)
-      .setFooter("View the graph of cases for this country by typing `c.graph`.")
+      .setFooter("View the graph of cases for this country by typing 'c.graph'")
       .setTimestamp();
     if (imageLink) embed.setImage(imageLink);
     message.channel.send(embed);
