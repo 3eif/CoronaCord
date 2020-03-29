@@ -30,7 +30,7 @@ module.exports = {
 
     shardInfo.forEach(i => {
       const status = i[7] > 1 ? client.emojiList.online : client.emojiList.offline;
-      embed.addField(`${status} Shard ${i[0] + 1}`, `\`\`\`js
+      embed.addField(`${status} Shard ${parseInt(i[0]) + 1}`, `\`\`\`js
 Servers: ${i[2]}\nChannels: ${i[3]}\nUsers: ${i[4]}\nMemory: ${i[5].toFixed(2)}\nAPI Latency: ${i[7]}ms\nEvents: 1M: ${i[6].filter(e => ((Date.now() - 1585425784085) - e.t) < 60000).length.toLocaleString()}, 15M: ${i[6].filter(e => ((Date.now() - 1585425784085) - e.t) < 900000).length.toLocaleString()}, 1H: ${i[6].filter(e => ((Date.now() - 1585425784085) - e.t) < 3600000).length.toLocaleString()}\nTotal: ${i[6].length.toLocaleString()} Events\`\`\``);
     });
 
