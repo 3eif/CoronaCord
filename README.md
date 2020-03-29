@@ -1,3 +1,6 @@
+## Disclaimer
+This project has been published under GNU AFFERO GPL license, so you need to publish whole source code and citate orginal authors name, even if you are using the bot for personal use.
+
 <div align="center">
     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F7%2F7c%2F2019-nCoV-CDC-23312.png%2F1200px-2019-nCoV-CDC-23312.png&f=1&nofb=1" width="150px" height="150px" /><br>
 </div>
