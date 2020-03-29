@@ -1,6 +1,3 @@
-## Disclaimer
-This project has been published under GNU AFFERO GPL license, so you need to publish whole source code and citate orginal authors name, even if you are using the bot for personal use.
-
 <div align="center">
     <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F7%2F7c%2F2019-nCoV-CDC-23312.png%2F1200px-2019-nCoV-CDC-23312.png&f=1&nofb=1" width="150px" height="150px" /><br>
 </div>
@@ -49,6 +46,9 @@ Self hosting CoronaCord is not supported and no help will be provided. I am not 
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Disclaimer
+This project has been published under GNU AFFERO GPL license, so you need to publish whole source code and citate orginal authors name, even if you are using the bot for personal use.
 
 ## Donate
 <a href="https://www.buymeacoffee.com/tetra" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-blue.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
