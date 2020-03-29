@@ -23,7 +23,7 @@ var baseOptions = {
 };
 
 if (tokens.env !== "local") {
-  baseOptions.totalShards = 10;
+  baseOptions.totalShards = 11;
 } else {
   baseOptions.totalShards = 2;
 }
