@@ -44,8 +44,5 @@ Coronacord's default prefix is set as `c.`. To view a list of the bot's commands
 ## Self Hosting
 Self hosting CoronaCord is not supported and no help will be provided. I am not responsible or liable for any self hosted clones of CoronaCord.
 
-## License - Disclaimer
-This project has been published under GNU AFFERO GPL license, so you need to publish whole source code and citate orginal authors name, even if you are using the bot for personal use.
-
 ## Donate
 <a href="https://www.buymeacoffee.com/tetra" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/lato-blue.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
