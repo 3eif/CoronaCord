@@ -80,7 +80,6 @@ module.exports = {
         .addField("Deaths", `${country.deaths.toLocaleString()} (${((country.deaths / country.cases) * 100).toFixed(2)}%)`, true)
         .addField("Cases Per Million", `${country.casesPerOneMillion.toLocaleString()}`, true)
         .addField("Deaths Per Million", `${country.deathsPerOneMillion.toLocaleString()}`, true)
-        .addField("First Case", `${country.firstCaseDate}`, true)
         .setThumbnail(`https://www.countryflags.io/${require("../../data/countries_abbreviations.json")[country.country]}/flat/64.png`)
         .setColor(client.colors.main)
         .setFooter("View the graph of cases for this country by typing 'c.graph'")
