@@ -10,7 +10,7 @@ module.exports = {
   description: "Shows infection graph of a country.",
   usage: "<country>",
   async execute (client, message, args) { // eslint-disable-line no-unused-vars
-    return message.channel.send("This command is temporarily disable.");
+    return message.channel.send("This command is temporarily disabled.");
     // if (!args[0]) return message.channel.send("You need to specify a country name.");
     // const countryInput = args.join(" ").toProperCase();
     // var countries = await novelcovid.countries();
