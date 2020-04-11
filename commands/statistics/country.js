@@ -9,7 +9,8 @@ module.exports = {
   args: true,
   async execute (client, message, args) {
     const track = new NovelCovid();
-    const countryInput = args.join(" ").toProperCase();
+    let countryInput = args.join(" ").toProperCase();
+    if (countryInput.toLowerCase() == "netherlands") countryInput = "nl";
     var country = await track.countries(countryInput);
     if (!country) return message.channel.send("I couldn't find that country. That country either doesn't exist, was typed incorrectly or has no confirmed cases. For a list of supported country names please type `c.countries`");
 
