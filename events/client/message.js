@@ -25,7 +25,6 @@ module.exports = class Message extends Event {
     }
 
     if (!message.channel.guild) return message.channel.send("I can't execute commands inside DMs! Please run this command in a server.");
-
     const mentionPrefix = new RegExp(`^<@!?${this.client.user.id}>( |)$`);
     let prefix;
     let ignoreMsg = false;
@@ -43,7 +42,6 @@ module.exports = class Message extends Event {
         prefix = message.content.split(" ")[0].match(mentionPrefix) || this.client.settings.prefix;
         ignoreMsg = false;
       }
-
       const messageContent = message.content.toLowerCase();
       if (messageContent.indexOf(this.client.settings.prefix) === 0) {
         prefix = this.client.settings.prefix;

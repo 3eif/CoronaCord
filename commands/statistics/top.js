@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const Discord = require("discord.js");
-const novelcovid = require("coronacord-api-wrapper");
+const { NovelCovid } = require("novelcovid");
 const { post } = require("snekfetch");
 
 module.exports = {
@@ -9,7 +9,8 @@ module.exports = {
   async execute (client, message, args) {
     const msg = await message.channel.send(`${client.emojiList.loading} Fetching top countries...`);
 
-    const countryStats = await novelcovid.countries();
+    const track = new NovelCovid();
+    const countryStats = await track.countries(null, "cases");
     let topCountries = "";
 
     for (let i = 0; i < 10; i++) {

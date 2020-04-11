@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 const Discord = require("discord.js");
 const statesJson = require("../../data/states.json");
-const novelcovid = require("coronacord-api-wrapper");
+const { NovelCovid } = require("novelcovid");
 const fetch = require("node-fetch");
 
 module.exports = {
@@ -10,9 +10,10 @@ module.exports = {
   usage: "<state>",
   args: true,
   async execute (client, message, args) {
+    const track = new NovelCovid();
 
     const stateInput = args.join(" ").toProperCase();
-    var states = await novelcovid.states();
+    var states = await track.states();
     const objStates = {};
     states.forEach(s => objStates[s.state] = s);
     states = objStates;
@@ -46,9 +47,9 @@ module.exports = {
       .addField("Today Deaths", `+${state.todayDeaths.toLocaleString()}`, true)
       .addField("Active", `${state.active.toLocaleString()} (${((state.active / state.cases) * 100).toFixed(2)}%)`, true)
       .addField("Deaths", `${state.deaths.toLocaleString()} (${((state.deaths / state.cases) * 100).toFixed(2)}%)`, true)
+      .addField("Tests", `${state.tests.toLocaleString()}`, true)
       .setThumbnail(flagURL)
-      .setColor(client.colors.main)
-      .setTimestamp();
+      .setColor(client.colors.main);
     if (imageLink) embed.setImage(imageLink);
     message.channel.send(embed);
   },
