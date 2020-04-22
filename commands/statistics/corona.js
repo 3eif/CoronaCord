@@ -39,7 +39,7 @@ module.exports = {
         .addField("Tests", `${stats.tests.toLocaleString()}`, true)
         .addField("Cases Per Mil", `${stats.casesPerOneMillion.toLocaleString()}`, true)
         .addField("Deaths Per Mil", `${stats.deathsPerOneMillion.toLocaleString()}`, true)
-        .setImage("https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/COVID-19_Outbreak_World_Map.svg/330px-COVID-19_Outbreak_World_Map.svg.png")
+        .setImage("https://xtrading.io/static/layouts/qK98Z47ptC-embed.png")
         .setColor(client.colors.main)
         .setFooter(`Last Updated: ${updatedTime}`);
       message.channel.send(embed);
