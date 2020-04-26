@@ -65,15 +65,17 @@ module.exports = {
         wikiName = country.country;
       }
 
-      const WikiPage = await fetch(`https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_${thePrefixedContries.includes(wikiName) ? "the_" : ""}${wikiName.replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_")}`).then(res => res.text());
-      const ImageRegex = /<meta property="og:image" content="([^<]*)"\/>/;
-      const ImageLink = ImageRegex.exec(WikiPage);
       var imageLink;
-      if (ImageLink) imageLink = ImageLink[1];
+      if (countryInput.toLowerCase() != "laos") {
+        const WikiPage = await fetch(`https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_${thePrefixedContries.includes(wikiName) ? "the_" : ""}${wikiName.replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_")}`).then(res => res.text());
+        const ImageRegex = /<meta property="og:image" content="([^<]*)"\/>/;
+        const ImageLink = ImageRegex.exec(WikiPage);
+        if (ImageLink) imageLink = ImageLink[1];
+      }
       if (countryInput.toLowerCase() == "uk") imageLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/COVID-19_outbreak_UK_case_counts.svg/640px-COVID-19_outbreak_UK_case_counts.svg.png";
   
       const updatedTime = new Date(country.updated);
-
+  
       const embed = new Discord.MessageEmbed()
         .setAuthor(country.country)
         .addField("Confirmed Cases", `**${country.cases.toLocaleString()}**`, true)

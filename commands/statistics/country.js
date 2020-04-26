@@ -7,7 +7,7 @@ module.exports = {
   description: "Shows stats about the corona virus in a specific country.",
   usage: "<country>",
   args: true,
-  async execute(client, message, args) {
+  async execute (client, message, args) {
     const track = new NovelCovid();
     let countryInput = args.join(" ").toProperCase();
     if (countryInput.toLowerCase() == "netherlands") countryInput = "nl";
