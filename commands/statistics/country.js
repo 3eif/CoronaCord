@@ -7,7 +7,7 @@ module.exports = {
   description: "Shows stats about the corona virus in a specific country.",
   usage: "<country>",
   args: true,
-  async execute (client, message, args) {
+  async execute(client, message, args) {
     const track = new NovelCovid();
     let countryInput = args.join(" ").toProperCase();
     if (countryInput.toLowerCase() == "netherlands") countryInput = "nl";
@@ -29,11 +29,13 @@ module.exports = {
       wikiName = country.country;
     }
 
-    const WikiPage = await fetch(`https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_${thePrefixedContries.includes(wikiName) ? "the_" : ""}${wikiName.replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_")}`).then(res => res.text());
-    const ImageRegex = /<meta property="og:image" content="([^<]*)"\/>/;
-    const ImageLink = ImageRegex.exec(WikiPage);
     var imageLink;
-    if (ImageLink) imageLink = ImageLink[1];
+    if (countryInput.toLowerCase() != "laos") {
+      const WikiPage = await fetch(`https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_${thePrefixedContries.includes(wikiName) ? "the_" : ""}${wikiName.replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_")}`).then(res => res.text());
+      const ImageRegex = /<meta property="og:image" content="([^<]*)"\/>/;
+      const ImageLink = ImageRegex.exec(WikiPage);
+      if (ImageLink) imageLink = ImageLink[1];
+    }
     if (countryInput.toLowerCase() == "uk") imageLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/COVID-19_outbreak_UK_case_counts.svg/640px-COVID-19_outbreak_UK_case_counts.svg.png";
 
     const updatedTime = new Date(country.updated);
