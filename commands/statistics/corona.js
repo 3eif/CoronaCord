@@ -46,7 +46,7 @@ module.exports = {
     } else {
       let countryInput = args.join(" ").toProperCase();
       if (countryInput.toLowerCase() == "netherlands") countryInput = "nl";
-
+      if (countryInput.toLowerCase() == "laos") countryInput = "Lao People's Democratic Republic";
       var country = await track.countries(countryInput);
       if (!country) return message.channel.send("I couldn't find that country. That country either doesn't exist, was typed incorrectly or has no confirmed cases. For a list of supported country names please type `c.countries`");
 
@@ -65,17 +65,15 @@ module.exports = {
         wikiName = country.country;
       }
 
+      const WikiPage = await fetch(`https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_${thePrefixedContries.includes(wikiName) ? "the_" : ""}${wikiName.replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_")}`).then(res => res.text());
+      const ImageRegex = /<meta property="og:image" content="([^<]*)"\/>/;
+      const ImageLink = ImageRegex.exec(WikiPage);
       var imageLink;
-      if (countryInput.toLowerCase() != "laos") {
-        const WikiPage = await fetch(`https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_${thePrefixedContries.includes(wikiName) ? "the_" : ""}${wikiName.replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_").replace(" ", "_")}`).then(res => res.text());
-        const ImageRegex = /<meta property="og:image" content="([^<]*)"\/>/;
-        const ImageLink = ImageRegex.exec(WikiPage);
-        if (ImageLink) imageLink = ImageLink[1];
-      }
+      if (ImageLink) imageLink = ImageLink[1];
       if (countryInput.toLowerCase() == "uk") imageLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/COVID-19_outbreak_UK_case_counts.svg/640px-COVID-19_outbreak_UK_case_counts.svg.png";
   
       const updatedTime = new Date(country.updated);
-  
+
       const embed = new Discord.MessageEmbed()
         .setAuthor(country.country)
         .addField("Confirmed Cases", `**${country.cases.toLocaleString()}**`, true)
