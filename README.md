@@ -25,7 +25,7 @@ Coronacord's default prefix is set as `c.`. To view a list of the bot's commands
 
 * <img src="./imgs/example2.PNG" alt="Image">
 
-* `c.country <country>` Shows a graph of the coronavirus in a specific country over time.
+* `c.graph <country>` Shows a graph of the coronavirus in a specific country over time.
 
 * <img src="./imgs/example1.PNG" alt="Image">
 
