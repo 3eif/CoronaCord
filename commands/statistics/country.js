@@ -36,6 +36,7 @@ module.exports = {
     var imageLink;
     if (ImageLink) imageLink = ImageLink[1];
     if (countryInput.toLowerCase() == "uk") imageLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/COVID-19_outbreak_UK_case_counts.svg/640px-COVID-19_outbreak_UK_case_counts.svg.png";
+    if (imageLink) imageLink += `?newest=${Date.now()}`; // wont be affected by discord cache and it will show updated all time
 
     const updatedTime = new Date(country.updated);
 
