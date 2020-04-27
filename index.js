@@ -19,14 +19,6 @@ var baseOptions = {
   timeout: 999999
 };
 
-/* Fallback to gateway recommended amount
-if (tokens.env !== "local") {
-  baseOptions.totalShards = 11;
-} else {
-  baseOptions.totalShards = 2;
-}
-*/
-
 const manager = new ShardingManager("./coronacord.js", baseOptions);
 
 manager.on("launch", shard => {
