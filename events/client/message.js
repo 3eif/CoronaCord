@@ -177,10 +177,10 @@ module.exports = class Message extends Event {
       }
 
       try {
-        // const random = Math.floor(Math.random() * 5); 
-        // if (random == 1) {
-        //   message.channel.send("**Enjoying the bot?** Vote for it here (it only takes a few seconds!): <https://top.gg/bot/644977600057573389/vote>");
-        // }
+        const random = Math.floor(Math.random() * 5); 
+        if (random == 1) {
+          message.channel.send("**Enjoying the bot?** Show your support by voting! (it only takes a few seconds!): <https://top.gg/bot/472714545723342848/vote>");
+        }
         cmd.execute(this.client, message, args);
       }
       catch (e) {
