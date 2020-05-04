@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-vars */
-// /* eslint-disable no-unused-vars */
 const Discord = require('discord.js');
-const countriesJSON = require('../../data/countries.json');
 const { NovelCovid } = require('novelcovid');
 const fetch = require('node-fetch');
 
@@ -11,11 +8,17 @@ Object.defineProperty(String.prototype, 'toProperCase', {
   },
 });
 
-module.exports = {
-  name: 'corona',
-  description: 'Shows stats about the corona virus.',
-  usage: '[country]',
-  async execute(client, message, args) {
+const Command = require('../../structures/Command');
+
+module.exports = class Corona extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'corona',
+      description: 'Shows stats about the corona virus.',
+      usage: '[country]',
+    });
+  }
+  async run(client, message, args) {
     const track = new NovelCovid();
 
     if (!args[0]) {
@@ -45,7 +48,7 @@ module.exports = {
         .setFooter(`Last Updated: ${updatedTime}`);
       message.channel.send(embed);
     }
- else {
+    else {
       let countryInput = args.join(' ').toProperCase();
       if (countryInput.toLowerCase() == 'netherlands') countryInput = 'nl';
       if (countryInput.toLowerCase() == 'laos') countryInput = 'Lao People\'s Democratic Republic';
@@ -64,7 +67,7 @@ module.exports = {
       if (wikiAliases[country.country]) {
         wikiName = wikiAliases[country.country];
       }
- else {
+      else {
         wikiName = country.country;
       }
 
@@ -89,11 +92,11 @@ module.exports = {
         .addField('Tests', `${country.tests.toLocaleString()}`, true)
         .addField('Cases Per Mil', `${country.casesPerOneMillion.toLocaleString()}`, true)
         .addField('Deaths Per Mil', `${country.deathsPerOneMillion.toLocaleString()}`, true)
-        .setThumbnail(`https://www.countryflags.io/${require('../../data/countries_abbreviations.json')[country.country]}/flat/64.png`)
+        .setThumbnail(`https://www.countryflags.io/${require('../../../assets/json/countries_abbreviations.json')[country.country]}/flat/64.png`)
         .setColor(client.colors.main)
         .setFooter(`Last Updated: ${updatedTime}`);
       if (imageLink) embed.setImage(imageLink);
       message.channel.send(embed);
     }
-  },
+  }
 };

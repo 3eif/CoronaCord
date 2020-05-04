@@ -1,10 +1,16 @@
 /* eslint-disable no-unused-vars */
 const Discord = require('discord.js');
 
-module.exports = {
-  name: 'symptoms',
-  description: 'Displays symptoms of the coronavirus.',
-  async execute(client, message, args) {
+const Command = require('../../structures/Command');
+
+module.exports = class Symptoms extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'symptoms',
+      description: 'Displays symptoms of the coronavirus.',
+    });
+  }
+  async run(client, message) {
     const embed = new Discord.MessageEmbed()
       .setAuthor('Coronavirus Symptoms', client.settings.avatar)
       .attachFiles(['./imgs/symptoms.PNG'])
@@ -16,5 +22,5 @@ module.exports = {
       .setFooter('More information can be found on the CDC website: https://www.cdc.gov/coronavirus/2019-ncov/index.html')
       .setColor(client.colors.main);
     message.channel.send(embed);
-  },
+  }
 };

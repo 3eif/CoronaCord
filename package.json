@@ -2,10 +2,7 @@
   "name": "coronacord",
   "version": "1.0.0",
   "description": "A discord bot that shows info about the corona virus",
-  "main": "index.js",
-  "scripts": {
-    "test": "c."
-  },
+  "main": "./src/index.js",
   "author": "Tetracyl#0001",
   "license": "MIT",
   "dependencies": {
@@ -21,5 +18,9 @@
     "node-fetch": "^2.6.0",
     "novelcovid": "^1.1.4",
     "snekfetch": "^4.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
   }
 }

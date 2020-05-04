@@ -1,10 +1,15 @@
 /* eslint-disable no-unused-vars */
 const Discord = require('discord.js');
+const Command = require('../../structures/Command');
 
-module.exports = {
-  name: 'tips',
-  description: 'Displays tips for avoiding the coronavirus.',
-  async execute(client, message, args) {
+module.exports = class Tips extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'tips',
+      description: 'Displays tips for avoiding the coronavirus.',
+    });
+  }
+  async run(client, message) {
     const embed = new Discord.MessageEmbed()
       .setAuthor('Tips from the World Health Organization', client.settings.avatar)
       .setDescription(`
@@ -17,5 +22,5 @@ module.exports = {
       .setFooter('More information can be found on the CDC website: https://www.cdc.gov/coronavirus/2019-ncov/index.html')
       .setColor(client.colors.main);
     message.channel.send(embed);
-  },
+  }
 };

@@ -1,9 +1,9 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const categories = fs.readdirSync('./commands/');
+const categories = fs.readdirSync('./src/commands/');
 const Command = require('../../structures/Command');
 
-module.exports = class Countries extends Command {
+module.exports = class Help extends Command {
   constructor(client) {
     super(client, {
       name: 'help',

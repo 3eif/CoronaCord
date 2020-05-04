@@ -1,13 +1,18 @@
 const Discord = require('discord.js');
 
-module.exports = {
-  name: 'stats',
-  description: 'Displays the bot\'s stats',
-  cooldown: '5',
-  async execute(client, message, args) { // eslint-disable-line no-unused-vars
+const Command = require('../../structures/Command');
+
+module.exports = class Stats extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'stats',
+      description: 'Displays the bot\'s stats',
+      cooldown: '5',
+    });
+  }
+  async run(client, message) {
     const msg = await message.channel.send(`${client.emojiList.loading} Gathering stats...`);
     const used = process.memoryUsage().heapUsed / 1024 / 1024;
-    // const usage = process.memoryUsage().rss / 1024 / 1024;
     const totalSeconds = process.uptime();
     const realTotalSecs = Math.floor(totalSeconds % 60);
     const days = Math.floor((totalSeconds % 31536000) / 86400);
@@ -41,5 +46,5 @@ module.exports = {
         return msg.edit('', statsEmbed);
       })
       .catch(console.error);
-  },
+  }
 };

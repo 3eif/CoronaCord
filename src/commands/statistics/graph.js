@@ -1,16 +1,21 @@
 /* eslint-disable no-unused-vars */
-const Discord = require("discord.js"); // eslint-disable-line no-unused-vars
-const countriesJSON = require("../../data/countries.json");
-const novelcovid = require("coronacord-api-wrapper");
-const Datasets = require("../../models/datasets.js");
-const { CanvasRenderService } = require("chartjs-node-canvas");
+const Discord = require('discord.js'); // eslint-disable-line no-unused-vars
+const countriesJSON = require('../../../assets/json/countries.json');
+const novelcovid = require('coronacord-api-wrapper');
+const { CanvasRenderService } = require('chartjs-node-canvas');
 
-module.exports = {
-  name: "graph",
-  description: "Shows infection graph of a country.",
-  usage: "<country>",
-  async execute (client, message, args) { // eslint-disable-line no-unused-vars
-    return message.channel.send("This command is temporarily disabled.");
+const Command = require('../../structures/Command');
+
+module.exports = class Graph extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'graph',
+      description: 'Shows infection graph of a country.',
+      usage: '<country>',
+    });
+  }
+  async run(client, message) {
+    return message.channel.send('This command is temporarily disabled.');
     // if (!args[0]) return message.channel.send("You need to specify a country name.");
     // const countryInput = args.join(" ").toProperCase();
     // var countries = await novelcovid.countries();

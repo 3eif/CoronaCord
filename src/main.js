@@ -9,9 +9,9 @@ const client = new Discord.Client({
 
 client.events = [];
 client.commands = new Discord.Collection();
-client.settings = require('./settings.js');
-client.colors = require('./data/colors.json');
-client.emojiList = require('./data/emojis.json');
+client.settings = require('../config/settings.js');
+client.colors = require('../config/colors.json');
+client.emojiList = require('../config/emojis.json');
 
 ['commands', 'events'].forEach(handler => {
   require(`./handlers/${handler}`)(client);

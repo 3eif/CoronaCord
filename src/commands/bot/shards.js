@@ -1,11 +1,17 @@
 const Discord = require('discord.js');
 
-module.exports = {
-  name: 'shards',
-  description: 'Displays the bot\'s shards',
-  cooldown: '5',
-  aliases: ['shardstats', 'shardinfo'],
-  async execute(client, message, args) { // eslint-disable-line no-unused-vars
+const Command = require('../../structures/Command');
+
+module.exports = class Shards extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'shards',
+      description: 'Displays the bot\'s shards',
+      cooldown: '5',
+      aliases: ['shardstats', 'shardinfo'],
+    });
+  }
+  async run(client, message) {
 
     const promises = [
       client.shard.fetchClientValues('guilds.cache.size'),
@@ -49,5 +55,5 @@ Servers: ${i[2]}\nChannels: ${i[3]}\nUsers: ${i[4]}\nMemory: ${i[5].toFixed(2)}\
         embed.addField('Total Stats', `**${avgLatency}ms** Avg. Latency - **${totalGuilds.toLocaleString()}** servers - **${totalMembers.toLocaleString()}** members - **${totalEvents.toLocaleString()}** events - **${totalMemory.toFixed(2)}** MB`);
         message.channel.send(embed);
       });
-  },
+  }
 };
