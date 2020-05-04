@@ -23,23 +23,23 @@ Coronacord's default prefix is set as `c.`. To view a list of the bot's commands
 
 * `c.corona` Shows global stats about the coronavirus.
 
-* <img src="./imgs/example2.PNG" alt="Image">
+* <img src="./assets/images/example2.PNG" alt="Image">
 
 * `c.graph <country>` Shows a graph of the coronavirus in a specific country over time.
 
-* <img src="./imgs/example1.PNG" alt="Image">
+* <img src="./assets/images/example1.PNG" alt="Image">
 
 * `c.country <country>` Shows stats about the coronavirus in a specific country.
 
-* <img src="./imgs/example3.PNG" alt="Image">
+* <img src="./assets/images/example3.PNG" alt="Image">
 
 * `c.state <state>` Shows stats about the coronavirus in a specific country.
 
-* <img src="./imgs/example4.PNG" alt="Image">
+* <img src="./assets/images/example4.PNG" alt="Image">
 
 * `c.top` Shows the countries most infected with the coronavirus.
 
-* <img src="./imgs/example5.PNG" alt="Image">
+* <img src="./assets/images/example5.PNG" alt="Image">
 
 ## Self Hosting
 Self hosting CoronaCord is not supported and no help will be provided. I am not responsible or liable for any self hosted clones of CoronaCord.
