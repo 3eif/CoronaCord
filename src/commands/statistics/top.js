@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const Discord = require('discord.js');
-const { NovelCovid } = require('novelcovid');
+const covid = require('covidtracker');
 const Command = require('../../structures/Command');
 
 module.exports = class Top extends Command {
@@ -13,12 +13,11 @@ module.exports = class Top extends Command {
   async run(client, message) {
     const msg = await message.channel.send(`${client.emojiList.loading} Fetching top countries...`);
 
-    const track = new NovelCovid();
-    const countryStats = await track.countries(null, 'cases');
+    const sortedCountries = await covid.getCountry({ sort: 'cases' });
     let topCountries = '';
 
     for (let i = 0; i < 10; i++) {
-      const country = countryStats[i];
+      const country = sortedCountries[i];
       topCountries += `${i + 1}. **${country.country}**: ${country.cases} cases - ${country.deaths} deaths - ${country.recovered} recovered\n`;
     }
 

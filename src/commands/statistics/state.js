@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 const Discord = require('discord.js');
 const statesJson = require('../../../assets/json/states.json');
-const { NovelCovid } = require('novelcovid');
+const covid = require('covidtracker');
 const fetch = require('node-fetch');
 const Command = require('../../structures/Command');
 
@@ -15,22 +15,10 @@ module.exports = class State extends Command {
     });
   }
   async run(client, message, args) {
-    const track = new NovelCovid();
-
     const stateInput = args.join(' ').toProperCase();
-    let states = await track.states();
-    const objStates = {};
-    states.forEach(s => objStates[s.state] = s);
-    states = objStates;
-    let name;
-    if (statesJson[args[0].toUpperCase().trim()]) {
-      name = statesJson[args[0].toUpperCase().trim()];
-    }
- else {
-      name = stateInput;
-    }
-    if (!states[name]) return message.channel.send('I couldn\'t find that state. That state either doesn\'t exist or was typed incorrectly.');
-    const state = states[name];
+
+    const state = await covid.getState({ state: stateInput });
+    if (!state) return message.channel.send('I couldn\'t find that state. That state either doesn\'t exist or was typed incorrectly.');
 
     const wikiName = state.state;
 
