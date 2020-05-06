@@ -9,7 +9,6 @@ class Ready extends Event {
   }
 
   async run(client) { // eslint-disable-line no-unused-vars
-    console.log(this.client.users.cache.size);
     this.client.user.setActivity('c.help');
     this.client.users.cache = new Discord.Collection();
     await this.client.users.fetch('644977600057573389');
