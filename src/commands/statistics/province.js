@@ -23,7 +23,7 @@ module.exports = class State extends Command {
     const prov = await covid.getJHU({ country, province });
     const obj = prov[0];
 
-    if (!prov) return message.channel.send('I couldn\'t find that province. That province either doesn\'t exist or was typed incorrectly.\nUsage example: `c.province <country> <province>`');
+    if (!obj.prov) return message.channel.send('I couldn\'t find that province. That province either doesn\'t exist or was typed incorrectly.\nUsage example: `c.province <country> <province>`');
 
     const embed = new Discord.MessageEmbed()
       .setAuthor(`${obj.province}, ${obj.country}`)
