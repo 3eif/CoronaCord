@@ -13,7 +13,7 @@ module.exports = class Symptoms extends Command {
   async run(client, message) {
     const embed = new Discord.MessageEmbed()
       .setAuthor('Coronavirus Symptoms', client.settings.avatar)
-      .attachFiles(['./images/symptoms.PNG'])
+      .attachFiles(['./assets/images/symptoms.PNG'])
       .setImage('attachment://symptoms.PNG')
       .setDescription(`
     - Symptoms: fever, cough, shortness of breath.
