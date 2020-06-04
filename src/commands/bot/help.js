@@ -49,21 +49,23 @@ module.exports = class Help extends Command {
     }
     else {
 
-      if (!commands.has(args[0])) {
-        return message.reply('That\'s not a valid command!');
-      }
-      const command = commands.get(args[0]);
+			if (!commands.has(args[0])) {
+				return msg.edit('That\'s not a valid command!');
+			}
+			const command = commands.get(args[0]);
 
-      data.push(`**Name:** ${command.name}`);
+			data.push(`**Name:** ${command.name}`);
 
-      if (command.description) data.push(`**Description:** ${command.description}`);
-      if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`);
-      if (command.usage) data.push(`**Usage:** \`${client.settings.prefix}${command.name} ${command.usage}\``);
+			if (command.description) data.push(`**Description:** ${command.description}`);
+			if (command.aliases == 'No aliases for this certain command') data.push('**Aliases:** This command has no aliases');
+			else data.push(`**Aliases:** \`${command.aliases}\``);
+			if (command.usage == 'No usage provided') data.push(`**Usage:** \`${client.settings.prefix}${command.name}\``);
+			else data.push(`**Usage:** \`${client.settings.prefix}${command.name} ${command.usage}\``);
 
-      data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
+			data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
 
-      msg.delete();
-      message.channel.send(data, { split: true });
+			msg.delete();
+			message.channel.send(data, { split: true });
     }
   }
 };
