@@ -2,7 +2,6 @@
 const Discord = require('discord.js');
 const cooldowns = new Discord.Collection();
 const Event = require('../../structures/Event');
-const webhookClient = new Discord.WebhookClient(process.env.MESSAGE_WEBHOOK_ID, process.env.MESSAGE_WEBHOOK_TOKEN);
 
 module.exports = class Message extends Event {
   constructor(...args) {
@@ -47,12 +46,6 @@ module.exports = class Message extends Event {
       .setDescription(`[Shard #${this.client.shard.ids}] **${cmd.name}** command used by **${message.author.tag}** (${message.author.id})`)
       .setFooter(`${message.guild.name} (${message.guild.id})`, message.guild.iconURL())
       .setTimestamp();
-
-    webhookClient.send({
-      username: 'CoronaCord',
-      avatarURL: this.client.settings.avatar,
-      embeds: [embed],
-    });
 
     if (!cooldowns.has(cmd.name)) {
       cooldowns.set(cmd.name, new Discord.Collection());

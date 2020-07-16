@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const Event = require('../../structures/Event');
-const webhookClient = new Discord.WebhookClient(process.env.WEBHOOK_ID, process.env.WEBHOOK_TOKEN);
 const DBL = require('dblapi.js');
 
 class Ready extends Event {
@@ -48,12 +47,6 @@ class Ready extends Event {
             .setFooter(`${totalMembers} users`);
 
           if (this.client.user.id == '644977600057573389') {
-            webhookClient.send({
-              username: 'CoronaCord',
-              avatarURL: this.client.settings.avatar,
-              embeds: [embed],
-            });
-
             this.client.dbl = new DBL(process.env.DBL_TOKEN, { webhookPort: process.env.DBL_PORT, webhookAuth: process.env.DBL_PASSWORD }, this.client);
             this.client.dbl.postStats(totalGuilds, this.client.shard.id, this.client.shard.count);
           }
