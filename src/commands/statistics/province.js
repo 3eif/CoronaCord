@@ -18,7 +18,7 @@ module.exports = class State extends Command {
     if(!args[0] || !args[1]) return message.channel.send('You must provide a country name and province name.\nUsage example: `c.province <country> <province>`');
 
     const country = args[0].toProperCase();
-    const province = args[1].toProperCase();
+    const province = args[1].join(' ').toProperCase();
 
     const prov = await covid.getJHU({ country, province });
     const obj = prov[0];
