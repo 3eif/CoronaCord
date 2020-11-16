@@ -2,7 +2,7 @@
   "name": "coronacord",
   "version": "1.0.0",
   "description": "A discord bot that shows info about the corona virus",
-  "main": "./index.js",
+  "main": "index.js",
   "author": "Tetracyl#0001",
   "license": "MIT",
   "dependencies": {
