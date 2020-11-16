@@ -6,7 +6,7 @@ const baseOptions = {
   timeout: 999999,
 };
 
-const manager = new ShardingManager('./index/main.js', baseOptions);
+const manager = new ShardingManager('./src/main.js', baseOptions);
 
 manager.on('launch', shard => {
   console.log(`Shard [${shard.id}] launched`);
